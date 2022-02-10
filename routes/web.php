@@ -13,5 +13,11 @@
 
 
 use Illuminate\Support\Facades\Route;
+//frontend
 Route::get('/','HomeController@index' );
 Route::get('/trang-chu','HomeController@index' );
+
+
+//backend
+Route::get('/admin','AdminController@index' );
+Route::get('/dashboard','AdminController@show_dashboard' );

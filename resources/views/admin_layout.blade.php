@@ -19,7 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('public/backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('public/backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -61,13 +62,15 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Danh mục sản phẩm</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Danh mục sản phẩm</h6>
+                        <a class="collapse-item" href="{{URL::to  ('/admin/add-category-product') }}">Thêm danh mục sản
+                            phẩm</a>
+                        <a class="collapse-item" href="{{URL::to  ('/admin/all-category-product') }}">Liệt kê danh mục
+                            sản phẩm</a>
                     </div>
                 </div>
             </li>
@@ -373,7 +376,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-              
+
                 @yield('admin_content')
 
                 <!-- /.container-fluid -->
@@ -439,6 +442,12 @@
     <script src="{{ asset('public/backend/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('public/backend/js/demo/chart-pie-demo.js') }}"></script>
 
+    <!-- Page level plugins -->
+    <script src="{{ asset('public/backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('public/backend/js/demo/datatables-demo.js') }}"></script>
 </body>
 
 </html>

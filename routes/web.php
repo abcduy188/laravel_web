@@ -23,3 +23,8 @@ Route::get('/admin','AdminController@index' );
 Route::get('/dashboard','AdminController@show_dashboard' );
 Route::post('/admin-dashboard','AdminController@dashboard' );
 Route::get('/logout','AdminController@logout' );
+
+//category product
+Route::get('/admin/add-category-product','CategoryProductController@add_category_product' );
+Route::get('/admin/all-category-product','CategoryProductController@all_category_product' );
+Route::post('/admin/save-category-product','CategoryProductController@save_category_product' );

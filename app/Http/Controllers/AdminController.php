@@ -8,6 +8,8 @@ use App\Http\Requesets;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
+use phpDocumentor\Reflection\Types\Void_;
+
 session_start();
 
 class AdminController extends Controller
@@ -32,8 +34,8 @@ class AdminController extends Controller
     {
         $admin_email = $request->admin_email;
         $admin_password = md5($request->admin_password);
-
-        $result =DB::table('tbl_admin')->where('email',$admin_email)->where('password',$admin_password)->first();
+        $abc=0;
+        $result =DB::table('tbl_admin')->where('email',$admin_email)->where('password',$admin_password)->first();       
         if($result)
         {
             session()->put('admin_name', $result->name);
@@ -43,6 +45,7 @@ class AdminController extends Controller
             session()->put('message','Email or password not correct!!');
             return Redirect::to('/admin');
         }
+       
          
     }
     public function logout()
@@ -51,4 +54,5 @@ class AdminController extends Controller
         session()->put('admin_id', null);
         return redirect('/admin');
     }
+   
 }

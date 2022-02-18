@@ -1,0 +1,18 @@
+.fa-toggle-off:before {
+    content: "\f204";
+    font-size: 30px;
+    color: red;
+}
+
+
+/* .fa-toggle-on:before {
+    content: "\f204";
+    font-size: 30px;
+    color: rgb(15, 245, 7);
+} */
+
+.fa-toggle-on:before {
+    content: "\f205";
+    font-size: 30px;
+    color: green;
+}

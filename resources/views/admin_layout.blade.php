@@ -21,6 +21,7 @@
     <link href="{{ asset('public/backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="{{ asset('public/backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -448,6 +449,7 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('public/backend/js/demo/datatables-demo.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

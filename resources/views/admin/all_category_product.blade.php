@@ -11,6 +11,14 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
         </div>
+        <?php
+        $message = session()->get('message');
+        if ($message)
+        {
+            echo  '<span class="text-alert" style="color: red;">'.$message.'</span>';
+            session()->put('message', null);
+        }
+             ?>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -34,31 +42,34 @@
                         </tr>
                     </tfoot>
                     <tbody>
-
+                        @foreach ($all_category_product as $item => $cate_pro)
                         <tr>
-                            <td>Michael Bruce</td>
-                            <td>Ẩn/Hiển thị</td>
-                            <td>2011/06/27</td>
-                            <td>29</td>
-                            <td>2011/06/27</td>
 
-                        </tr>
-                        <tr>
-                            <td>Michael Bruce</td>
-                            <td>Ẩn/Hiển thị</td>
+                            <td>{{ $cate_pro -> category_name }}</td>
+                            <td>
+                                @if ($cate_pro -> category_status == 0)
+                                <a href="{{URL::to ('/admin/active-category-product/'.$cate_pro -> id) }}"><span
+                                        class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
+                                @else
+                                <a href="{{URL::to ('/admin/unactive-category-product/'.$cate_pro -> id) }}"><span
+                                        class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
+                                @endif
+
+                            </td>
                             <td>2011/06/27</td>
                             <td>29</td>
                             <td>
-                                <a id="editCate" class="editCate" data-target="#edit"
-                                data-toggle="modal"
-                                data-path="">Edit</a>
-                                <a id="deleteUser" class="deleteUser" data-target="#basic"
-                                data-toggle="modal"
-                                data-path="">Delete</a>
-                               
+                                <a href="{{URL::to ('/admin/edit-category-product/'.$cate_pro -> id) }}">Edit</a>
+                                ||
+                                <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
+                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> id) }}">Delete</a>
+
                             </td>
 
                         </tr>
+                        @endforeach
+
+
                     </tbody>
                 </table>
             </div>
@@ -87,4 +98,18 @@
 <!-- /.container-fluid -->
 
 <!-- End of Main Content -->
+@endsection
+
+@section('script')
+<script>
+            var path_to_delete;
+
+        $(".deleteUser").click(function (e) {
+            path_to_delete = $(this).data('path');
+        });
+        
+        $('#btnContinueDelete').click(function () {
+            window.location = path_to_delete;
+        });
+</script>
 @endsection

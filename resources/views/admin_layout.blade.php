@@ -450,6 +450,16 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('public/backend/js/demo/datatables-demo.js') }}"></script>
     @yield('script')
+    <script>
+        $(document).ready(function () {
+            //custom alert
+            $('#alertM').removeClass('hide');
+            // $('#alertM').delay(10000).slideUp(10000);
+
+            // $('#alertM').hide();
+        });
+        
+    </script>
 </body>
 
 </html>

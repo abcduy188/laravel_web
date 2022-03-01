@@ -35,11 +35,11 @@ class AdminController extends Controller
         $admin_email = $request->admin_email;
         $admin_password = md5($request->admin_password);
         $abc=0;
-        $result =DB::table('tbl_admin')->where('email',$admin_email)->where('password',$admin_password)->first();       
+        $result =DB::table('user')->where('Email',$admin_email)->where('Password',$admin_password)->first();       
         if($result)
         {
-            session()->put('admin_name', $result->name);
-            session()->put('admin_id', $result->id);
+            session()->put('admin_name', $result->Name);
+            session()->put('admin_id', $result->ID);
             return Redirect::to('/dashboard');
         }else{
             session()->put('message','Email or password not correct!!');

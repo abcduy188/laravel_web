@@ -36,3 +36,11 @@ Route::get('/admin/unactive-category-product/{categoryproduct_id}','CategoryProd
 
 Route::post('/admin/save-category-product','CategoryProductController@save_category_product' );
 Route::post('/admin/update-category-product/{categoryproduct_id}','CategoryProductController@update_category_product' );
+
+
+
+//product
+Route::get('/admin/add-product','ProductController@add_product' );
+Route::get('/admin/all-product','ProductController@all_product' );
+Route::get('/admin/edit-product/{categoryproduct_id}','ProductController@edit_product' );
+Route::get('/admin/delete-product/{categoryproduct_id}','ProductController@delete_product' );

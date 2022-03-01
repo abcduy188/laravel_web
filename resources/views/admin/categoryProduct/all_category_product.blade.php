@@ -15,10 +15,13 @@
         $message = session()->get('message');
         if ($message)
         {
-            echo  '<span class="text-alert" style="color: red;">'.$message.'</span>';
-            session()->put('message', null);
+            echo '<div id="alertM" class="alert alert-success">
+                    <strong>'.$message.'</strong>;
+                   
+                </div>';
+                session()->put('message', null);
         }
-             ?>
+   ?>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -45,25 +48,56 @@
                         @foreach ($all_category_product as $item => $cate_pro)
                         <tr>
 
-                            <td>{{ $cate_pro -> category_name }}</td>
+                            <td>{{ $cate_pro -> CategoryName }}</td>
                             <td>
-                                @if ($cate_pro -> category_status == 0)
-                                <a href="{{URL::to ('/admin/active-category-product/'.$cate_pro -> id) }}"><span
+                                @if ($cate_pro -> Status == 0)
+                                <a href="{{URL::to ('/admin/active-category-product/'.$cate_pro -> ID ) }}"><span
                                         class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
                                 @else
-                                <a href="{{URL::to ('/admin/unactive-category-product/'.$cate_pro -> id) }}"><span
+                                <a href="{{URL::to ('/admin/unactive-category-product/'.$cate_pro -> ID ) }}"><span
                                         class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
                                 @endif
 
                             </td>
-                            <td>2011/06/27</td>
-                            <td>29</td>
-                            <td>
-                                <a href="{{URL::to ('/admin/edit-category-product/'.$cate_pro -> id) }}">Edit</a>
-                                ||
-                                <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> id) }}">Delete</a>
+                            <td><?php
+                                if ($cate_pro -> ModifiedDate == null)
+                                {
+                                    echo $cate_pro -> CreateDate;
 
+                                }
+                                     
+                                else {
+                                    echo $cate_pro -> ModifiedDate;
+                                }
+                            ?>
+
+                               
+                            <td><?php
+                                if ($cate_pro -> ModifiedBy == null)
+                                {
+                                    echo $cate_pro -> CreateBy;
+
+                                }
+                                else {
+                                    echo $cate_pro -> ModifiedBy;
+                                }
+                            ?></td>
+                            <td>
+                                <a href="{{URL::to ('/admin/edit-category-product/'.$cate_pro -> ID ) }}">Edit</a>
+                                ||
+
+
+                                @if ($cate_pro -> IsDelete == 1)
+
+                                <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
+                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Khôi
+                                    phục</a>
+
+                                @else{
+                                <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
+                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Delete</a>
+
+                                @endif
                             </td>
 
                         </tr>
@@ -102,7 +136,7 @@
 
 @section('script')
 <script>
-            var path_to_delete;
+    var path_to_delete;
 
         $(".deleteUser").click(function (e) {
             path_to_delete = $(this).data('path');

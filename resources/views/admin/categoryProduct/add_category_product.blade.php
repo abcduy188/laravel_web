@@ -23,11 +23,6 @@
                         placeholder="Nhập tên sản phẩm">
                 </div>
                 <div class="form-group">
-                    <label for="input-2">Mô tả: </label>
-                    <textarea style="resize: none;" rows="8" class="form-control" name="category_product_desc"
-                        placeholder="Mô tả danh mục"></textarea>
-                </div>
-                <div class="form-group">
                     <label for="input-2">Hiển thị: </label>
                     <select name="category_product_status" class="form-control input-sm m-bot15">
                         <option value="0">Ẩn</option>

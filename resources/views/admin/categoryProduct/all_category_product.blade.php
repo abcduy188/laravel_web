@@ -93,7 +93,7 @@
                                     data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Khôi
                                     phục</a>
 
-                                @else{
+                                @else
                                 <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
                                     data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Delete</a>
 

@@ -29,6 +29,7 @@ class CategoryProductController extends Controller
         $isdelete = 0;
         // lay data theo name
         $data['CategoryName'] = $request->category_product_name;
+        $data['SeoTitle'] = $request->category_product_seo;
         $data['Status'] = $request->category_product_status;
         $data['IsDelete'] = $isdelete;
 
@@ -48,7 +49,7 @@ class CategoryProductController extends Controller
 
         // lay data theo name
         $data['CategoryName'] = $request->category_product_name;
-
+        $data['SeoTitle'] = $request->category_product_seo;
         DB::table('categoryproduct')->where('ID', '=', $id)->update($data);
         session()->put('message', 'cập nhật danh mục sản phẩm thành công');
         return Redirect::to('/admin/all-category-product');

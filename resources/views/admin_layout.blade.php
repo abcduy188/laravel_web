@@ -75,7 +75,22 @@
                     </div>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProduct"
+                    aria-expanded="true" aria-controls="collapseProduct">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Sản phẩm</span>
+                </a>
+                <div id="collapseProduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Sản phẩm</h6>
+                        <a class="collapse-item" href="{{URL::to  ('/admin/add-product') }}">Thêm sản
+                            phẩm</a>
+                        <a class="collapse-item" href="{{URL::to  ('/admin/all-product') }}">Liệt kê
+                            sản phẩm</a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

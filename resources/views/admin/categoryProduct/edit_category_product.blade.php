@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label for="input-1">Seotitle: </label>
                     <input type="text" class="form-control" name="category_product_name"
-                     value="{{$edit_value->SeoTitle}}"   placeholder="Nhập tên sản phẩm" id="slug" disabled>
+                     value="{{$edit_value->SeoTitle}}" id="slug">
                 </div>
 
                 <div class="form-group">

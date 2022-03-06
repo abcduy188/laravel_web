@@ -50,7 +50,7 @@ Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_produ
 Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
 Route::get('/admin/unactive-category-product/{product_id}', 'ProductController@unactive_product');
 
-Route::post('/admin/save-product', 'ProductController@save_category_product');
+Route::post('/admin/save-product', 'ProductController@save_product');
 Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
 
 

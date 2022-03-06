@@ -27,75 +27,73 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Tên sản phẩm</th>
                             <th>Tên danh mục</th>
+                            <th>Hình ảnh</th>
                             <th>Hiển thị</th>
+
                             <th>Ngày thêm</th>
                             <th>Người thêm</th>
                             <th></th>
 
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Tên danh mục</th>
-                            <th>Hiển thị</th>
-                            <th>Ngày thêm</th>
-                            <th>Người thêm</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
+                   
                     <tbody>
-                        @foreach ($all_category_product as $item => $cate_pro)
+                        @foreach ($all_product as $item)
                         <tr>
 
-                            <td>{{ $cate_pro -> CategoryName }}</td>
+                            <td>{{ $item ->Name }}</td>
+                            <td>{{ $item ->CategoryName }}</td>
+                           
+                            <td> <a href="{{ $item ->Image }}" target=”_blank”><img src="{{ $item -> Image }}" alt="" height="50px" ></a></td>
                             <td>
-                                @if ($cate_pro -> Status == 0)
-                                <a href="{{URL::to ('/admin/active-category-product/'.$cate_pro -> ID ) }}"><span
+                                @if ($item ->Status == 0)
+                                <a href="{{URL::to ('/admin/active-product/'.$item -> ID ) }}"><span
                                         class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
                                 @else
-                                <a href="{{URL::to ('/admin/unactive-category-product/'.$cate_pro -> ID ) }}"><span
+                                <a href="{{URL::to ('/admin/unactive-product/'.$item -> ID ) }}"><span
                                         class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
                                 @endif
 
                             </td>
                             <td><?php
-                                if ($cate_pro -> ModifiedDate == null)
+                                if ($item -> ModifiedDate == null)
                                 {
-                                    echo $cate_pro -> CreateDate;
+                                    echo $item -> CreateDate;
 
                                 }
                                      
                                 else {
-                                    echo $cate_pro -> ModifiedDate;
+                                    echo $item -> ModifiedDate;
                                 }
                             ?>
 
                                
                             <td><?php
-                                if ($cate_pro -> ModifiedBy == null)
+                                if ($item -> ModifiedBy == null)
                                 {
-                                    echo $cate_pro -> CreateBy;
+                                    echo $item -> CreateBy;
 
                                 }
                                 else {
-                                    echo $cate_pro -> ModifiedBy;
+                                    echo $item -> ModifiedBy;
                                 }
                             ?></td>
                             <td>
-                                <a href="{{URL::to ('/admin/edit-category-product/'.$cate_pro -> ID ) }}">Edit</a>
+                                <a href="{{URL::to ('/admin/edit-product/'.$item -> ID ) }}">Edit</a>
                                 ||
 
 
-                                @if ($cate_pro -> IsDelete == 1)
+                                @if ($item -> IsDelete == 1)
 
                                 <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Khôi
+                                    data-path="{{URL::to ('/admin/delete-product/'.$item -> ID ) }}">Khôi
                                     phục</a>
 
                                 @else{
                                 <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Delete</a>
+                                    data-path="{{URL::to ('/admin/delete-product/'.$item -> ID ) }}">Delete</a>
 
                                 @endif
                             </td>

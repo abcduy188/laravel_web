@@ -20,7 +20,7 @@
             }
                  ?>
             <hr>
-            <form role="form" method="POST" action="{{ URL :: to ('/admin/save-category-product') }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ URL :: to ('/admin/save-product') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="input-1">Tên sản phẩm: </label>
@@ -29,27 +29,44 @@
                 </div>
                 <div class="form-group">
                     <label for="input-1">Tên SEO: </label>
-                    <input type="text" class="form-control" name="seotitle_name"
-                        placeholder="Tên seo tự động" id = "slug">
+                    <input type="text" class="form-control" name="product_seotitle"
+                        placeholder="Tên seo tự động" id = "slug" >
                 </div>
                 <div class="form-group">
                     <label for="input-1">Hình ảnh: </label>
-                    <input type="file" class="form-control" name="image"
-                        placeholder="Hình ảnh sản phẩm">
+                    <input type="file" class="form-control" name="file"
+                        placeholder="Hình ảnh sản phẩm" required>
                 </div>
                 <div class="form-group">
                     <label for="input-1">Giá sản phẩm: </label>
-                    <input type="text" class="form-control" name="price"
+                    <input type="text" class="form-control" name="product_price"
                         placeholder="Tên seo tự động">
                 </div>
                 <div class="form-group">
                     <label for="input-1">Giá khuyến mãi: </label>
-                    <input type="text" class="form-control" name="PromotionPrice"
-                        placeholder="Tên seo tự động">
+                    <input type="text" class="form-control" name="product_promotionprice"
+                        placeholder="Giá KM">
                 </div>
                 <div class="form-group">
+                    <label for="input-2">Danh mục: </label>
+                    <select name="cateogryproduct_id" class="form-control input-sm m-bot15">
+                        @foreach ($category as $cate )
+                        <option value="{{$cate -> ID  }}">{{ $cate->CategoryName }}</option>
+                        @endforeach
+                       
+                      
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input-1">Mô tả: </label>
+                    <textarea  class="form-control" name="product_description"
+                        placeholder="Giá KM" cols="5" rows="5"></textarea>
+                </div>
+                
+                <div class="form-group">
                     <label for="input-2">Hiển thị: </label>
-                    <select name="category_product_status" class="form-control input-sm m-bot15">
+                    <select name="product_status" class="form-control input-sm m-bot15">
                         <option value="0">Ẩn</option>
                         <option value="1">Hiện</option>
 
@@ -57,7 +74,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-light px-5" name="add_category_product"><i
-                            class="icon-lock"></i> Thêm danh mục</button>
+                            class="icon-lock"></i> Thêm sản phẩm</button>
                 </div>
             </form>
         </div>

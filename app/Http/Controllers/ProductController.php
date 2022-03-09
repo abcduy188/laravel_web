@@ -99,12 +99,6 @@ class ProductController extends Controller
                 session()->put('message', 'Đã khôi phục danh mục');
             } else {
                 DB::table('product')->where('ID', '=', $id)->update(['IsDelete' => 1]);
-                $listproduct = DB::table('product')->where('category_id', $id)->get();
-                foreach ($listproduct as $product) {
-                    DB::table('product')
-                        ->where('ID', $product->ID)
-                        ->update(['IsDelete' => 1]);
-                }
                 session()->put('message', 'Đã xóa danh mục');
             }
         }

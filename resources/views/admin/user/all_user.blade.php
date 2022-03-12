@@ -27,80 +27,41 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tên danh mục</th>
-                            <th>Hiển thị</th>
-                            <th>Ngày thêm</th>
-                            <th>Người thêm</th>
+                            <th>Tên</th>
+                            <th>email</th>
+                            <th>Admin</th>
+                            <th>MOD</th>
+                            <th>USER</th>
                             <th></th>
 
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Tên danh mục</th>
-                            <th>Hiển thị</th>
-                            <th>Ngày thêm</th>
-                            <th>Người thêm</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
+
                     <tbody>
-                        @foreach ($all_category_product as $item => $cate_pro)
-                        <tr>
-
-                            <td>{{ $cate_pro -> CategoryName }}</td>
-                            <td>
-                                @if ($cate_pro -> Status == 0)
-                                <a href="{{URL::to ('/admin/active-category-product/'.$cate_pro -> ID ) }}"><span
-                                        class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
-                                @else
-                                <a href="{{URL::to ('/admin/unactive-category-product/'.$cate_pro -> ID ) }}"><span
-                                        class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
-                                @endif
-
-                            </td>
-                            <td><?php
-                                if ($cate_pro -> ModifiedDate == null)
-                                {
-                                    echo $cate_pro -> CreateDate;
-
-                                }
-                                     
-                                else {
-                                    echo $cate_pro -> ModifiedDate;
-                                }
-                            ?>
-
-                               
-                            <td><?php
-                                if ($cate_pro -> ModifiedBy == null)
-                                {
-                                    echo $cate_pro -> CreateBy;
-
-                                }
-                                else {
-                                    echo $cate_pro -> ModifiedBy;
-                                }
-                            ?></td>
-                            <td>
-                                <a href="{{URL::to ('/admin/edit-category-product/'.$cate_pro -> ID ) }}">Edit</a>
-                                ||
-
-
-                                @if ($cate_pro -> IsDelete == 1)
-
-                                <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Khôi
-                                    phục</a>
-
-                                @else{
-                                <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> ID ) }}">Delete</a>
-
-                                @endif
-                            </td>
-
-                        </tr>
+                        @foreach ($admin as $item)
+                       
+                            <tr>
+                            <form role="form" action="{{ URL::to('/assign-roles') }}" method="POST">
+                                    @csrf
+                                <td>{{ $item -> Name }}</td>
+                                <td>{{ $item -> email }}</td>
+                                <input type="hidden" name="email" value="{{ $item->email}}">
+                                <td>
+                                    <input type="checkbox" name="admin" {{ $item->hasRole('ADMIN') ? 'checked' : '' }}>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="mod" {{ $item->hasRole('MOD') ? 'checked' : '' }}>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="user" {{ $item->hasRole('USER') ? 'checked' : '' }}>
+                                </td>
+                                <td>
+                                    <input type="submit" value="Assign Roles" class="btn btn-sm btn-default"/>
+                                </td>
+                            </form>
+                            </tr>
+                        
+                      
                         @endforeach
 
 

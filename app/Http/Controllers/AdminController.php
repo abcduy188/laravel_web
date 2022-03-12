@@ -25,7 +25,7 @@ class AdminController extends Controller
 
         }
         else{
-           redirect('/login-index')->send();
+           redirect('/admin/login')->send();
         }
     }
     public function show_dashboard()

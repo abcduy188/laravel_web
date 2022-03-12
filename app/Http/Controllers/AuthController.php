@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Member;
+use App\User;
 use App\Roles;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -23,20 +23,23 @@ class AuthController extends Controller
     public function doRegister(Request $request)
     {
         $data = $request->all();
-        $check = Member::where('email', '=', $data['register_email']);
+        $check = User::where('email', $data['register_email'])->first();
+
         if ($check) {
             return redirect('/register')->with('message', 'Email đã có người sử dụng');
         }
 
-        $member = new Member();
-        $member->Email = $data['register_email'];
+        $member = new User();
+        $member->email = $data['register_email'];
         $member->Phone = $data['register_phone'];
         $member->Name = $data['register_name'];
         $member->password = Hash::make($data['register_password']);
         $member->Status = 1;
         $member->save();
 
-        return redirect('/register')->with('message', 'Đăng kí thành công');
+        $member->roles()->attach(Roles::where('role', 'USER')->first());
+
+        return redirect('/admin/login')->with('message', 'Đăng kí thành công');
     }
     public function login()
     {
@@ -49,7 +52,6 @@ class AuthController extends Controller
             'email' => $request['Email'],
             'password' => $request['Password'],
         ];
-
         if (Auth::attempt($credentials)) {
             return redirect('/dashboard');
         } else {

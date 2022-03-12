@@ -300,7 +300,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?php
-                                    $message = session()->get('admin_name');
+                                    $message = Auth::user()->Name;
                                     if ($message)
                                     {
                                         echo  $message;
@@ -382,7 +382,7 @@
                 <div class="modal-body">Bạn có chắc muốn đăng xuất?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{ URL::to('/logout') }}">Logout</a>
+                    <a class="btn btn-primary" href="{{ URL::to('/admin/logout') }}">Logout</a>
                 </div>
             </div>
         </div>

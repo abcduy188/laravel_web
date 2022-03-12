@@ -22,10 +22,8 @@ Route::get('/trang-chu', 'HomeController@index');
 
 
 //backend
-Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@show_dashboard');
-Route::post('/admin-dashboard', 'AdminController@dashboard');
-Route::get('/logout', 'AdminController@logout');
+
 
 //category product
 Route::get('/admin/add-category-product', 'CategoryProductController@add_category_product');
@@ -61,14 +59,22 @@ Route::get('/admin/all-user', 'UserController@all_product');
 Route::get('/admin/edit-user/{user_id}', 'UserController@edit_product');
 Route::get('/admin/delete-user/{user_id}', 'UserController@delete_product');
 
-//testupload
-Route::get('upload', function () {
-    return view('admin.testupload');
-});
 
-Route::post('upload', function (Request $request) {
-    $uploadedFileUrl = Cloudinary::upload($request->file('file')->getRealPath(),[
-        'folder'=>'test',
-    ])->getSecurePath();
-    dd($uploadedFileUrl);
-});
+//Authentication
+Route::get('/register', 'AuthController@register');
+Route::post('/doregister', 'AuthController@doRegister');
+Route::get('/admin/login', 'AuthController@login');
+Route::post('/admin/dologin', 'AuthController@doLogin');
+Route::get('/admin/logout', 'AuthController@logout');
+
+//testupload
+// Route::get('upload', function () {
+//     return view('admin.testupload');
+// });
+
+// Route::post('upload', function (Request $request) {
+//     $uploadedFileUrl = Cloudinary::upload($request->file('file')->getRealPath(),[
+//         'folder'=>'test',
+//     ])->getSecurePath();
+//     dd($uploadedFileUrl);
+// });

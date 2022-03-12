@@ -23,7 +23,7 @@ class AccessPermission
         //     return $next($request);
         // }
 
-        if(Auth::user()->hasAnyRole(['admin','mod']))
+        if(Auth::user()->hasAnyRoles(['ADMIN','mod']))
         {
             return $next($request);
         }else{

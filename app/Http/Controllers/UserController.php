@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Roles;
+use Illuminate\Support\Facades\Auth;
 
 session_start();
 class UserController extends Controller
@@ -37,5 +38,20 @@ class UserController extends Controller
             $user->roles()->attach(Roles::where('role', 'ADMIN')->first());
         }
         return redirect()->back();
+    }
+    public function delete_user($id)
+    {
+        if(Auth::id()===$id) return redirect()->back()->with('message','Bạn không thể xóa chính mình');
+        
+        $user = User::find($id);
+        if($user)
+        {
+            $user->roles()->detach();
+            $user->delete();
+            return redirect()->back()->with('message','Xóa User Thành công');
+        }
+        
+        return redirect()->back()->with('message','Lỗi');
+        
     }
 }

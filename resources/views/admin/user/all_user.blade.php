@@ -39,10 +39,10 @@
 
                     <tbody>
                         @foreach ($admin as $item)
-                       
-                            <tr>
+
+                        <tr>
                             <form role="form" action="{{ URL::to('/assign-roles') }}" method="POST">
-                                    @csrf
+                                @csrf
                                 <td>{{ $item -> Name }}</td>
                                 <td>{{ $item -> email }}</td>
                                 <input type="hidden" name="email" value="{{ $item->email}}">
@@ -56,12 +56,16 @@
                                     <input type="checkbox" name="user" {{ $item->hasRole('USER') ? 'checked' : '' }}>
                                 </td>
                                 <td>
-                                    <input type="submit" value="Assign Roles" class="btn btn-sm btn-default"/>
+                                    <input type="submit" value="Assign Roles" class="btn btn-sm btn-default" />
+                                    <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
+                                        data-path="{{URL::to ('/admin/delete-user/'.$item -> id ) }}">Delete</a>
                                 </td>
                             </form>
-                            </tr>
-                        
-                      
+                            
+
+                        </tr>
+
+
                         @endforeach
 
 

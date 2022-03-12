@@ -60,13 +60,14 @@ Route::group(['middleware' => 'auth.roles'], function () {
     Route::get('/admin/add-user', 'UserController@add_product');
     Route::get('/admin/all-user', 'UserController@index');
     Route::get('/admin/edit-user/{user_id}', 'UserController@edit_product');
-    Route::get('/admin/delete-user/{user_id}', 'UserController@delete_product');
+    
 
 
 
 
     //Author
     Route::post('/assign-roles', 'UserController@assign_roles');
+    Route::get('/admin/delete-user/{user_id}', 'UserController@delete_user');
 });
 
 

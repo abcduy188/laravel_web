@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requesets;
 use Illuminate\Contracts\Session\Session as SessionSession;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
 use phpDocumentor\Reflection\Types\Void_;
@@ -33,16 +34,25 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $admin_email = $request->admin_email;
-        $admin_password = md5($request->admin_password);
-        $abc=0;
-        $result =DB::table('user')->where('Email',$admin_email)->where('Password',$admin_password)->first();       
+        $admin_password = Hash::make($request->admin_password);
+
+        $result =DB::table('user')->where('Email',$admin_email)->first();  
+          
+        
         if($result)
         {
-            session()->put('admin_name', $result->Name);
-            session()->put('admin_id', $result->ID);
-            return Redirect::to('/dashboard');
+            if(Hash::check($request->admin_password, $result->Password))  {
+                session()->put('admin_name', $result->Name);
+                session()->put('admin_id', $result->ID);
+                return Redirect::to('/dashboard');
+            }
+            else{
+                session()->put('message','password not correct!!');
+                return Redirect::to('/admin');
+            }
+           
         }else{
-            session()->put('message','Email or password not correct!!');
+            session()->put('message','Email not correct!!');
             return Redirect::to('/admin');
         }
        

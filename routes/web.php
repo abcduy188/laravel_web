@@ -50,10 +50,14 @@ Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_produ
 Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
 Route::get('/admin/unactive-category-product/{product_id}', 'ProductController@unactive_product');
 
-Route::post('/admin/save-product', 'ProductController@save_category_product');
+Route::post('/admin/save-product', 'ProductController@save_product');
 Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
 
-
+//user
+Route::get('/admin/add-user', 'UserController@add_product');
+Route::get('/admin/all-user', 'UserController@all_product');
+Route::get('/admin/edit-user/{user_id}', 'UserController@edit_product');
+Route::get('/admin/delete-user/{user_id}', 'UserController@delete_product');
 
 //testupload
 Route::get('upload', function () {

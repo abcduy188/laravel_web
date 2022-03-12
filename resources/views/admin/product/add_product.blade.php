@@ -51,7 +51,7 @@
                     <label for="input-2">Danh mục: </label>
                     <select name="cateogryproduct_id" class="form-control input-sm m-bot15">
                         @foreach ($category as $cate )
-                        <option value="{{$cate -> ID  }}">{{ $cate->CategoryName }}</option>
+                        <option value="{{$cate -> id  }}">{{ $cate-> CategoryName }}</option>
                         @endforeach
                        
                       

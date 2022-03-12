@@ -15,44 +15,44 @@
             }
                  ?>
             <hr>
-            @foreach($edit_product as $item)
+          
 
-            <form role="form" method="POST" action="{{ URL :: to ('/admin/update-product/'.$item->ID) }}"
+            <form role="form" method="POST" action="{{ URL :: to ('/admin/update-product/'.$edit_product->id) }}"
                 enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="input-1">Tên sản phẩm: </label>
-                    <input type="text" class="form-control" name="product_name" value="{{$item->Name }}" id="title" ,
+                    <input type="text" class="form-control" name="product_name" value="{{$edit_product->Name }}" id="title" ,
                         onkeyup="ChangeToSlug();">
                 </div>
                 <div class="form-group">
                     <label for="input-1">Tên SEO: </label>
-                    <input type="text" class="form-control" name="product_seotitle" value="{{$item->SeoTitle}}"
+                    <input type="text" class="form-control" name="product_seotitle" value="{{$edit_product->SeoTitle}}"
                         id="slug">
                 </div>
                 <div class="form-group">
                     <label for="input-1">Hình ảnh: </label>
                     <input type="file" class="form-control" name="file">
-                    <img src="{{ $item->Image }}" height="50px" alt="">
+                    <img src="{{ $edit_product->Image }}" height="50px" alt="">
                 </div>
                 <div class="form-group">
                     <label for="input-1">Giá sản phẩm: </label>
-                    <input type="text" class="form-control" name="product_price" value="{{$item->Price }}">
+                    <input type="text" class="form-control" name="product_price" value="{{$edit_product->Price }}">
                 </div>
                 <div class="form-group">
                     <label for="input-1">Giá khuyến mãi: </label>
                     <input type="text" class="form-control" name="product_promotionprice"
-                        value="{{$item->PromotionPrice }}">
+                        value="{{$edit_product->PromotionPrice }}">
                 </div>
                 <div class="form-group">
                     <label for="input-2">Danh mục: </label>
                     <select name="cateogryproduct_id" class="form-control input-sm m-bot15">
-
-                        @foreach ($category as $cate)
-                        @if ($cate->ID == $item->category_id)
-                        <option selected value="{{$cate->ID }}">{{$cate->CategoryName }}</option>
+                    
+                       @foreach ($category as $cate)
+                        @if ($cate->id == $edit_product->category_id)
+                        <option selected value="{{$cate->id }}">{{$cate->CategoryName }}</option>
                         @else
-                        <option value="{{$cate -> ID}}">{{ $cate->CategoryName }}</option>
+                        <option value="{{$cate -> id}}">{{ $cate->CategoryName }}</option>
                         @endif
                         @endforeach
                     </select>
@@ -60,30 +60,16 @@
                 <div class="form-group">
                     <label for="input-1">Mô tả: </label>
                     <textarea class="form-control" name="product_description" cols="5"
-                        rows="5">{{$item->Description}}</textarea>
+                        rows="5">{{ html_entity_decode($edit_product->Description) }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="input-2">Hiển thị: </label>
-                    <select name="product_status" class="form-control input-sm m-bot15">
-                        @if ($item->Status == 0)
-                        <option selected value="0">Ẩn</option>
-                        <option value="1">Hiện</option>
-                        @else
-                        <option value="0">Ẩn</option>
-                        <option selected value="1">Hiện</option>
-                        @endif
-
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-light px-5" name="add_category_product"><i
+                    <button type="submit" class="btn btn-light px-5"><i
                             class="icon-lock"></i> Cập sản phẩm</button>
                 </div>
             </form>
 
-            @endforeach
+           
 
 
         </div>
@@ -97,7 +83,7 @@
                 var title, slug;
     
                 //Lấy text từ thẻ input title
-                title = document.getElementById("title").value;
+                title = document.getElementByid("title").value;
     
                 //Đổi chữ hoa thành chữ thường
                 slug = title.toLowerCase();
@@ -121,7 +107,7 @@
                 slug = slug.replace(/\-\-\-/gi, '-');
                 slug = slug.replace(/\-\-/gi, '-');
                 //In slug ra textbox có id “slug”
-                document.getElementById('slug').value = slug;
+                document.getElementByid('slug').value = slug;
             }
     
 </script>

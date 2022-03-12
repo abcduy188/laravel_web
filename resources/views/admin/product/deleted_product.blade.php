@@ -8,7 +8,7 @@
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-       
+
         <?php
         $message = session()->get('message');
         if ($message)
@@ -27,65 +27,23 @@
                         <tr>
                             <th>Tên sản phẩm</th>
                             <th>Tên danh mục</th>
-                            <th>Hình ảnh</th>
-                            <th>Hiển thị</th>
-
-                            <th>Ngày thêm</th>
-                            <th>Người thêm</th>
                             <th></th>
 
                         </tr>
                     </thead>
-                   
+
                     <tbody>
                         @foreach ($all_product as $item)
                         <tr>
 
                             <td>{{ $item ->Name }}</td>
                             <td>{{ $item ->category->CategoryName }}</td>
-                           
-                            <td> <a href="{{ $item ->Image }}" target=”_blank”><img src="{{ $item -> Image }}" alt="" height="50px" ></a></td>
+
+
                             <td>
-                                @if ($item ->Status == 0)
-                                <a href="{{URL::to ('/admin/active-product/'.$item -> id ) }}"><span
-                                        class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
-                                @else
-                                <a href="{{URL::to ('/admin/unactive-product/'.$item -> id ) }}"><span
-                                        class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
-                                @endif
-
-                            </td>
-                            <td><?php
-                                if ($item -> ModifiedDate == null)
-                                {
-                                    echo $item -> CreateDate;
-
-                                }
-                                     
-                                else {
-                                    echo $item -> ModifiedDate;
-                                }
-                            ?>
-
-                               
-                            <td><?php
-                                if ($item -> ModifiedBy == null)
-                                {
-                                    echo $item -> CreateBy;
-
-                                }
-                                else {
-                                    echo $item -> ModifiedBy;
-                                }
-                            ?></td>
-                            <td>
-                                <a href="{{URL::to ('/admin/edit-product/'.$item -> id ) }}">Edit</a>
-                                ||
-
                                 <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-product/'.$item -> id ) }}">Delete</a>
-
-                                
+                                    data-path="{{URL::to ('/admin/delete-product/'.$item -> id ) }}">Khôi
+                                    phục</a>
                             </td>
 
                         </tr>
@@ -104,14 +62,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Delete Confirmation</h4>
+                <h4 class="modal-title">Restore Confirmation</h4>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete this item?
+               Are you want to restore this product?
             </div>
             <div class="modal-footer">
                 <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
-                <button id="btnContinueDelete" type="button" class="btn btn-primary">Delete</button>
+                <button id="btnContinueDelete" type="button" class="btn btn-primary">Restore</button>
             </div>
         </div>
     </div>

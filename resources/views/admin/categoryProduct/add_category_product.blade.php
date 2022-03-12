@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="input-1">Seotitle: </label>
-                    <input type="text" class="form-control" name="category_product_name"
+                    <input type="text" class="form-control" name="category_product_seo"
                         placeholder="Nhập tên sản phẩm" id="slug">
                 </div>
                 <div class="form-group">

@@ -28,69 +28,22 @@
                     <thead>
                         <tr>
                             <th>Tên danh mục</th>
-                            <th>Hiển thị</th>
-                            <th>Ngày thêm</th>
-                            <th>Người thêm</th>
+
                             <th></th>
 
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Tên danh mục</th>
-                            <th>Hiển thị</th>
-                            <th>Ngày thêm</th>
-                            <th>Người thêm</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
+
                     <tbody>
                         @foreach ($all_category_product as $item => $cate_pro)
                         <tr>
 
                             <td>{{ $cate_pro -> CategoryName }}</td>
+
                             <td>
-                                @if ($cate_pro -> Status == 0)
-                                <a href="{{URL::to ('/admin/active-category-product/'.$cate_pro -> id ) }}"><span
-                                        class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
-                                @else
-                                <a href="{{URL::to ('/admin/unactive-category-product/'.$cate_pro -> id ) }}"><span
-                                        class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
-                                @endif
-
-                            </td>
-                            <td><?php
-                                if ($cate_pro -> ModifiedDate == null)
-                                {
-                                    echo $cate_pro -> CreateDate;
-
-                                }
-                                     
-                                else {
-                                    echo $cate_pro -> ModifiedDate;
-                                }
-                            ?>
-
-
-                            <td><?php
-                                if ($cate_pro -> ModifiedBy == null)
-                                {
-                                    echo $cate_pro -> CreateBy;
-
-                                }
-                                else {
-                                    echo $cate_pro -> ModifiedBy;
-                                }
-                            ?></td>
-                            <td>
-                                <a href="{{URL::to ('/admin/edit-category-product/'.$cate_pro -> id ) }}">Edit</a>
-                                ||
-
-
                                 <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
-                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> id ) }}">Delete</a>
-
-
+                                    data-path="{{URL::to ('/admin/delete-category-product/'.$cate_pro -> id ) }}">Khôi
+                                    phục</a>
                             </td>
 
                         </tr>
@@ -109,14 +62,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Delete Confirmation</h4>
+                <h4 class="modal-title">Restore Confirmation</h4>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete this item?
+                Are you sure you want to Restore this item?
             </div>
             <div class="modal-footer">
                 <button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
-                <button id="btnContinueDelete" type="button" class="btn btn-primary">Delete</button>
+                <button id="btnContinueDelete" type="button" class="btn btn-primary">Restore</button>
             </div>
         </div>
     </div>

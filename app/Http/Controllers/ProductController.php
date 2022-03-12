@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\CategoryProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requesets;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Contracts\Session\Session as SessionSession;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Redirect;
-use SebastianBergmann\Environment\Console;
+use App\Product;
+use Carbon\Carbon;
 
 session_start();
 class ProductController extends Controller
@@ -17,103 +18,113 @@ class ProductController extends Controller
     public function all_product()
     {
 
-        $all = DB::table('product')
-        ->join('categoryproduct','product.category_id','=','categoryproduct.ID') 
-        ->select('product.*', 'categoryproduct.CategoryName')->get();
-
-        // $all = DB::table('product')->get();
-        
-        $manage_product = view('admin.product.all_product')->with('all_product', $all);
-        return view('admin_layout')->with('admin.all_product', $manage_product);
+        $all = Product::where('IsDelete', '=', 0)
+            ->with('category')->get();
+        $manage_product = view('admin.product.all_product')
+            ->with('all_product', $all);
+        return view('admin_layout')
+            ->with('admin.all_product', $manage_product);
+    }
+    public function deleted_product()
+    {
+        $all = Product::where('IsDelete', '=', 1)
+            ->with('category')->get();
+        $manage_product = view('admin.product.deleted_product')
+            ->with('all_product', $all);
+        return view('admin_layout')
+            ->with('admin.deleted_product', $manage_product);
     }
     public function add_product()
     {
-        $category = DB::table('categoryproduct')->orderby('ID', 'desc')->get();
+        $category = CategoryProduct::orderby('id', 'desc')->get();
         return view('admin.product.add_product')->with('category', $category);
     }
     public function save_product(Request $request)
     {
-        $data = array();
-        $uploadedFileUrl = Cloudinary::upload($request->file('file')->getRealPath(),[
-            'folder'=>'Laravel-Shop',
+        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $uploadedFileUrl = Cloudinary::upload($request->file('file')->getRealPath(), [
+            'folder' => 'Laravel-Shop',
         ])->getSecurePath();
-        $data['Image'] = $uploadedFileUrl;
         $isdelete = 0;
-        $data['Name'] = $request->product_name;
-        $data['SeoTitle'] = $request->product_seotitle;
-        $data['Price'] = $request->product_price;
-        $data['PromotionPrice'] = $request->product_promotionprice;
-        $data['Description'] = $request->product_description;
-        $data['Status'] = $request->product_status;
-        $data['IsDelete'] = $isdelete;
-        $data['category_id'] = $request->cateogryproduct_id;
+        $data = $request->all();
 
-        DB::table('product')->insert($data);
-        session()->put('message', 'Thêm danh mục sản phẩm thành công');
+
+
+        $product = new Product();
+        $product->Image = $uploadedFileUrl;
+        $product->Name = $data['product_name'];
+        $product->SeoTitle = $data['product_seotitle'];
+        $product->Price = $data['product_price'];
+        $product->PromotionPrice = $data['product_promotionprice'];
+        $product->Description = $data['product_description'];
+        $product->Status = $data['product_status'];
+        $product->category_id = $data['cateogryproduct_id'];
+        $product->IsDelete =  $isdelete;
+        $product->CreateBy = session()->get('admin_name');
+        $product->CreateDate = $date;
+        $product->save();
+
+        session()->put('message', 'Thêm sản phẩm thành công');
         return Redirect::to('/admin/add-product');
     }
     public function edit_product($id)
     {
-        
-        $editproduct = DB::table('product')->where('ID','=',$id)->get();
-        $category = DB::table('categoryproduct')->orderby('ID', 'desc')->get();
-        $manage_product = view('admin.product.edit_product')->with('edit_product', $editproduct)->with('category',$category);
+
+        $editproduct = Product::find($id);
+        $category = CategoryProduct::orderby('id', 'desc')->get();
+        $manage_product = view('admin.product.edit_product')->with('edit_product', $editproduct)->with('category', $category);
         return view('admin_layout')->with('admin.product.edit_product', $manage_product);
-        
-       
     }
     public function update_product(Request $request, $id)
     {
-
-        $data = array();
+        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $data =  $request->all();
         $img = $request->file('file');
-        if($img)
-        {
-            $uploadedFileUrl = Cloudinary::upload($img->getRealPath(),[
-                'folder'=>'Laravel-Shop',
+        $product = Product::find($id);
+        if ($img) {
+            $uploadedFileUrl = Cloudinary::upload($img->getRealPath(), [
+                'folder' => 'Laravel-Shop',
             ])->getSecurePath();
-            $data['Image'] = $uploadedFileUrl;
+            $product->Image = $uploadedFileUrl;
         }
-        $isdelete = 0;
-        $data['Name'] = $request->product_name;
-        $data['SeoTitle'] = $request->product_seotitle;
-        $data['Price'] = $request->product_price;
-        $data['PromotionPrice'] = $request->product_promotionprice;
-        $data['Description'] = $request->product_description;
-        $data['Status'] = $request->product_status;
-        $data['IsDelete'] = $isdelete;
-        $data['category_id'] = $request->cateogryproduct_id;
 
-        DB::table('product')->where('ID', '=', $id)->update($data);
-        session()->put('message', 'cập nhật danh mục sản phẩm thành công');
-        return Redirect::to('/admin/all-category-product');
+        $product->Name = $data['product_name'];
+        $product->SeoTitle = $data['product_seotitle'];
+        $product->Price = $data['product_price'];
+        $product->PromotionPrice = $data['product_promotionprice'];
+        $product->Description = $data['product_description'];
+        $product->category_id = $data['cateogryproduct_id'];
+        $product->ModifiedBy = session()->get('admin_name');
+        $product->ModifiedDate = $date;
+        $product->save();
+
+        session()->put('message', 'cập nhật sản phẩm thành công');
+        return Redirect::to('/admin/all-product');
     }
     public function delete_product($id)
     {
-        $cate = DB::table('product')->where('ID', '=', $id)->get();
-        foreach ($cate as $item) {
+        $item = Product::find($id);
 
-            if ($item->IsDelete == 1) {
-                DB::table('product')->where('ID', '=', $id)->update(['IsDelete' => 0]);
-
-                session()->put('message', 'Đã khôi phục danh mục');
-            } else {
-                DB::table('product')->where('ID', '=', $id)->update(['IsDelete' => 1]);
-                session()->put('message', 'Đã xóa danh mục');
-            }
+        if ($item->IsDelete == 1) {
+            $item->IsDelete = 0;
+            session()->put('message', 'Đã khôi phục Sản phẩm');
+        } else {
+            $item->IsDelete = 1;
+            session()->put('message', 'Đã xóa Sản phẩm');
         }
+        $item->save();
         return Redirect::to('/admin/all-product');
     }
     public function active_product($product_id)
     {
-        DB::table('product')->where('ID', '=', $product_id)->update(['Status' => 1, 'ModifiedBy' => 'duy']);
-        session()->put('message', 'Đã hiển thị danh mục');
-        return Redirect::to('/admin/all-category-product');
+        Product::find($product_id)->update(['Status' => 1]);
+        session()->put('message', 'Đã hiển thị sản phẩm');
+        return Redirect::to('/admin/all-product');
     }
     public function unactive_product($product_id)
     {
-        DB::table('product')->where('ID', $product_id)->update(['Status' => 0]);
-        session()->put('message', 'Đã ẩn danh mục');
-        return Redirect::to('/admin/all-category-product');
+        Product::find($product_id)->update(['Status' => 0]);
+        session()->put('message', 'Đã ẩn sản phẩm');
+        return Redirect::to('/admin/all-product');
     }
 }

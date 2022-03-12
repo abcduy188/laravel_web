@@ -32,6 +32,7 @@ Route::get('/admin/add-category-product', 'CategoryProductController@add_categor
 Route::get('/admin/all-category-product', 'CategoryProductController@all_category_product');
 Route::get('/admin/edit-category-product/{categoryproduct_id}', 'CategoryProductController@edit_category_product');
 Route::get('/admin/delete-category-product/{categoryproduct_id}', 'CategoryProductController@delete_category_product');
+Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_category_product');
 // {categoryproduct_id} khai bao tuy y
 Route::get('/admin/active-category-product/{categoryproduct_id}', 'CategoryProductController@active_category_product');
 Route::get('/admin/unactive-category-product/{categoryproduct_id}', 'CategoryProductController@unactive_category_product');
@@ -46,9 +47,10 @@ Route::get('/admin/add-product', 'ProductController@add_product');
 Route::get('/admin/all-product', 'ProductController@all_product');
 Route::get('/admin/edit-product/{product_id}', 'ProductController@edit_product');
 Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_product');
+Route::get('/admin/deleted-product', 'ProductController@deleted_product');
 // {categoryproduct_id} khai bao tuy y
 Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
-Route::get('/admin/unactive-category-product/{product_id}', 'ProductController@unactive_product');
+Route::get('/admin/unactive-product/{product_id}', 'ProductController@unactive_product');
 
 Route::post('/admin/save-product', 'ProductController@save_product');
 Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');

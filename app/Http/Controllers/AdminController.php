@@ -34,8 +34,6 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $admin_email = $request->admin_email;
-        $admin_password = Hash::make($request->admin_password);
-
         $result =DB::table('user')->where('Email',$admin_email)->first();  
           
         

@@ -36,14 +36,14 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"> <img src="https://cdn.discordapp.com/attachments/898785149951557652/946290085018619924/phaohoa2.jpg" alt=""></div> --}}
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"> <img src="https://cdn.discordapp.com/attachments/898785149951557652/946290085018619924/phaohoa2.jpg" alt=""></div>
+                            <div class="col-lg-6 d-none d-lg-block"> <img src="https://cdn.discordapp.com/attachments/898785149951557652/952090566978576384/natural_1.jpg" height="500px" alt=""></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <?php
                                     $message = session()->get('message');
                                     if ($message)
                                     {
-                                        echo  '<span class="text-alert">'.$message.'</span>';
+                                        echo  '<div class="alert alert-danger">'.$message.'</div>';
                                         session()->put('message', null);
                                     }
                                          ?>

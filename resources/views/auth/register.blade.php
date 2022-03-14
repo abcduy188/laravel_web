@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Trang quản lí</title>
+    <title>Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('public/backend/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -47,47 +47,49 @@
                                         session()->put('message', null);
                                     }
                                          ?>
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    <form class="user" action="{{URL::to ('/admin-dashboard') }}" method="POST">
+                                    <form class="user" action="{{URL::to ('/doregister') }}" method="POST">
                                         {{ csrf_field() }}
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="admin_email" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." name="admin_email" required>
+                                                id="register_email" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address..." name="register_email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="register_name" placeholder="Name"
+                                                name="register_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                id="register_phone" placeholder="Phone"
+                                                name="register_phone" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="admin_password" placeholder="Password"
-                                                name="admin_password" required>
+                                                id="register_password" placeholder="Password"
+                                                name="register_password" required onkeyup='check();' onchange="check2();" >
+                                                <span
+													id='messagecheck1'></span>
                                         </div>
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
+                                            <input type="password" class="form-control form-control-user"
+                                                id="register_confirm" placeholder="Confirm Password"
+                                                name="register_confirm" required onkeyup='check();'>
+                                                <span
+													id='messagecheck'></span>
                                         </div>
-                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login"/>
-                                        {{-- <a href="#" class="btn btn-primary btn-user btn-block" type="">
-                                            Login
-                                        </a> --}}
+                                        <input type="submit" id="btn"  class="btn btn-primary btn-user btn-block" value="Register" disabled="disabled"/>
+                                    
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        <a href="{{ URL::to('/register') }}" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Create an Account Auth
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
+                    
                                 </div>
                             </div>
                         </div>
@@ -109,7 +111,29 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('public/backend/js/sb-admin-2.min.js') }}"></script>
-
+    <script type="text/javascript">
+		var check = function() {
+			if (document.getElementById('register_password').value == document
+					.getElementById('register_confirm').value) {
+				document.getElementById('messagecheck').style.color = 'green';
+				document.getElementById('messagecheck').innerHTML = 'matching';
+				document.getElementById('btn').disabled =false;
+			} else {
+				document.getElementById('messagecheck').style.color = 'red';
+				document.getElementById('messagecheck').innerHTML = 'not matching';
+			}
+            
+		}
+        var check2 = function(){
+           
+            if ((document.getElementById('register_password').value).length <6) {
+				document.getElementById('messagecheck1').style.color = 'red';
+				document.getElementById('messagecheck1').innerHTML = 'Mật khẩu phải hơn 6 kí tự';
+			}
+            console.log(document.getElementById('register_password').length);
+        }
+        
+	</script>
 </body>
 
 </html>

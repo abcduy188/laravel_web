@@ -15,7 +15,25 @@ class AccessPermission
      */
     public function handle($request, Closure $next)
     {
+
+        // $id = Auth::id();
+        // $user = User::find($id);
+        // if($user->hasRole('admin'))
+        // {
+        //     return $next($request);
+        // }
+        $admin_id = Auth::id();
+        if($admin_id == null)
+        {
+            return redirect('/admin/login')->with('message','Bạn phải đăng nhập trước');
+        }
+        if(Auth::user()->hasAnyRoles(['ADMIN','mod']))
+        {
+            return $next($request);
+        }else{
+            return redirect('/admin/login')->with('message','You do not have permission');
+        }
         
-        return $next($request);
     }
 }
+

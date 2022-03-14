@@ -22,7 +22,11 @@ class AccessPermission
         // {
         //     return $next($request);
         // }
-
+        $admin_id = Auth::id();
+        if($admin_id == null)
+        {
+            return redirect('/admin/login')->with('message','Bạn phải đăng nhập trước');
+        }
         if(Auth::user()->hasAnyRoles(['ADMIN','mod']))
         {
             return $next($request);

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Roles;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 session_start();
 class UserController extends Controller
@@ -53,5 +55,26 @@ class UserController extends Controller
         
         return redirect()->back()->with('message','Lỗi');
         
+    }
+    public function edit_user($id)
+    {
+        $editUser = User::find($id);
+        $manage_product = view('admin.user.edit_user')->with('editUser', $editUser);
+        return view('admin_layout')->with('admin.user.edit_user', $manage_product);
+    }
+    public function update_user(Request $request, $id)
+    {
+        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $data =  $request->all();
+        $user = User::find($id);
+        $user -> name = $data['name'];
+        $user -> Phone = $data['phone'];
+        $user->email = $data['email'];
+        $user->ModifiedBy = Auth::user()->Name;
+        $user->ModifiedDate = $date;
+        $user->save();
+
+        session()->put('message', 'cập nhật sản phẩm thành công');
+        return Redirect::to('/admin/all-user');
     }
 }

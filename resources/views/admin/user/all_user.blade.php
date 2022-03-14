@@ -57,6 +57,7 @@
                                 </td>
                                 <td>
                                     <input type="submit" value="Assign Roles" class="btn btn-sm btn-default" />
+                                    <a href="{{URL::to ('/admin/edit-user/'.$item -> id ) }}">Edit</a>
                                     <a id="deleteUser" class="deleteUser" data-target="#basic" data-toggle="modal"
                                         data-path="{{URL::to ('/admin/delete-user/'.$item -> id ) }}">Delete</a>
                                 </td>

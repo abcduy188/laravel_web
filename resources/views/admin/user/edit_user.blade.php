@@ -15,19 +15,27 @@
             }
                  ?>
             <hr>
-            @foreach ($edit_category_product as $key => $edit_value)
-                
-            @endforeach
-            <form role="form" method="POST" action="{{ URL :: to ('/admin/update-category-product/'.$edit_value->ID) }}">
+            <form role="form" method="POST" action="{{ URL :: to ('/admin/update-user/'.$editUser->id) }}">
                 {{ csrf_field() }}
+               
                 <div class="form-group">
-                    <label for="input-1">Tên danh mục: </label>
-                    <input type="text" class="form-control" name="category_product_name"
-                         value="{{$edit_value->CategoryName}}">
+                    <label for="input-1">Email </label>
+                    <input type="text" class="form-control" name="email"
+                        value="{{$editUser-> email}}">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-light px-5" name="add_category_product"><i
-                            class="icon-lock"></i> Cập nhật danh mục </button>
+                    <label for="input-1">Name </label>
+                    <input type="text" class="form-control" name="name"
+                     value="{{$editUser-> Name}}">
+                </div>
+                <div class="form-group">
+                    <label for="input-1">Phone </label>
+                    <input type="text" class="form-control" name="phone"
+                     value="{{$editUser-> Phone}}">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-light px-5"><i
+                            class="icon-lock"></i> Cập nhật user </button>
                 </div>
             </form>
         </div>

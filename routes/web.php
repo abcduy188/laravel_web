@@ -11,10 +11,7 @@
 |
 */
 
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\Environment\Console;
 
 //frontend
 Route::get('/', 'HomeController@index');
@@ -47,7 +44,7 @@ Route::group(['middleware' => 'auth.roles'], function () {
     Route::get('/admin/add-product', 'ProductController@add_product');
     Route::get('/admin/all-product', 'ProductController@all_product');
     Route::get('/admin/edit-product/{product_id}', 'ProductController@edit_product');
-    Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_product');
+
     Route::get('/admin/deleted-product', 'ProductController@deleted_product');
     // {categoryproduct_id} khai bao tuy y
     Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
@@ -57,17 +54,18 @@ Route::group(['middleware' => 'auth.roles'], function () {
     Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
 
     //user
-    Route::get('/admin/add-user', 'UserController@add_product');
+
     Route::get('/admin/all-user', 'UserController@index');
-    Route::get('/admin/edit-user/{user_id}', 'UserController@edit_product');
-    
+    Route::group(['middleware' => 'admin.role'], function () {
+        Route::get('/admin/add-user', 'UserController@add_product');
+        Route::get('/admin/edit-user/{user_id}', 'UserController@edit_user');
+        Route::post('/admin/update-user/{user_id}', 'UserController@update_user');
+        Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_product');
+        Route::post('/assign-roles', 'UserController@assign_roles');
+        //Author
 
-
-
-
-    //Author
-    Route::post('/assign-roles', 'UserController@assign_roles');
-    Route::get('/admin/delete-user/{user_id}', 'UserController@delete_user');
+        Route::get('/admin/delete-user/{user_id}', 'UserController@delete_user');
+    });
 });
 
 

@@ -11,12 +11,13 @@
 |
 */
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 //frontend
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
-
+Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 
 
 

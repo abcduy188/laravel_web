@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
 Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
-
+Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 
 
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +26,21 @@
     <!--bootstrap-js-->
     <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
     <!--script-->
+    <!-- FlexSlider -->
+    <script src="{{asset('public/frontend/js/imagezoom.js')}}"></script>
+    <script defer src="{{asset('public/frontend/js/jquery.flexslider.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/frontend/css/flexslider.css')}}" type="text/css" media="screen" />
+
+    <script>
+        // Can also be used with $(document).ready()
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "slide",
+      controlNav: "thumbnails"
+    });
+  });
+    </script>
+    <!-- //FlexSlider-->
 </head>
 
 <body>
@@ -71,8 +85,8 @@
                         <!--/.navbar-header-->
 
                         <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
-                           {{-- partial here --}}
-                           @include('partial.category');
+                            {{-- partial here --}}
+                            @include('partial.category');
                             <div class="clearfix"></div>
                         </div>
                         <!--/.navbar-collapse-->

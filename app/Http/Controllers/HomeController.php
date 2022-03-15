@@ -11,7 +11,8 @@ class HomeController extends Controller
     //
     public function index()
     {
-        return view('client.home');
+        $product = Product::orderBy('CreateDate')->take(6)->get();
+        return view('client.home')->with('product', $product);
     }
     // public function all_category_product()
     // {
@@ -19,11 +20,16 @@ class HomeController extends Controller
     //     $manage_category_product = view('client.home')->with('all_category_product', $all);
     //     return view('layout')->with('client.home', $manage_category_product);
     // }
-    public function category($seotitle ,$id)
+    public function category($seotitle, $id)
     {
 
-        $all= Product::all()->where('category_id', $id);
-        
-        dd($all);
+        $all = Product::all()->where('category_id', $id);
+        return view('client.category')->with('product', $all);
+    }
+    public function product($seotitle, $id)
+    {
+        $product = Product::find($id);
+        $prorela = Product::where([['category_id', '=', $product->category_id], ['id', '<>', $product->id]])->get();
+        return view('client.product')->with('product', $product)->with('prorela', $prorela);
     }
 }

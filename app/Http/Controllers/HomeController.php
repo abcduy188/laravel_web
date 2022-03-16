@@ -14,12 +14,6 @@ class HomeController extends Controller
         $product = Product::orderBy('CreateDate')->take(6)->get();
         return view('client.home')->with('product', $product);
     }
-    // public function all_category_product()
-    // {
-    //     $all = CategoryProduct::all()->where('IsDelete', '=', 0);
-    //     $manage_category_product = view('client.home')->with('all_category_product', $all);
-    //     return view('layout')->with('client.home', $manage_category_product);
-    // }
     public function category($seotitle, $id)
     {
 

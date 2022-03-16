@@ -91,16 +91,14 @@
 
 <div class="specifications">
     <div class="container">
-        <h3>Item Details</h3>
+        <h3>Chi tiết sản phẩm</h3>
         <div class="detai-tabs">
             <!-- Nav tabs -->
             <ul class="nav nav-pills tab-nike" role="tablist">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
-                        data-toggle="tab">Highlights</a></li>
+                        data-toggle="tab">Chi tiết</a></li>
                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                        data-toggle="tab">Description</a></li>
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Terms
-                        & conditiona</a></li>
+                        data-toggle="tab">Nội dung</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -126,9 +124,6 @@
                         online with us at some unbelievable discounts and great prices. So get faster and run farther
                         with your Nike shoes and track how hard you can play.</p>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="messages">
-                    The images represent actual product though color of the image and product may slightly differ.
-                </div>
             </div>
         </div>
     </div>
@@ -136,7 +131,7 @@
 
 <div class="you-might-like">
     <div class="container">
-        <h3 class="you-might">Products You May Like</h3>
+        <h3 class="you-might">Sản phẩm liên quan</h3>
         @foreach ($prorela as $item)
         <div class="col-md-4 grid-stn simpleCart_shelfItem">
             <!-- normal -->

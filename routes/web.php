@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth.roles'], function () {
 
     Route::post('/admin/save-category-product', 'CategoryProductController@save_category_product');
     Route::post('/admin/update-category-product/{categoryproduct_id}', 'CategoryProductController@update_category_product');
-
+    Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_cateogory_product');
     //product
     Route::get('/admin/add-product', 'ProductController@add_product');
     Route::get('/admin/all-product', 'ProductController@all_product');

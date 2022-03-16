@@ -115,4 +115,5 @@ class CategoryProductController extends Controller
         session()->put('message', 'Đã ẩn danh mục');
         return Redirect::to('/admin/all-category-product');
     }
+    
 }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +26,21 @@
     <!--bootstrap-js-->
     <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
     <!--script-->
+    <!-- FlexSlider -->
+    <script src="{{asset('public/frontend/js/imagezoom.js')}}"></script>
+    <script defer src="{{asset('public/frontend/js/jquery.flexslider.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/frontend/css/flexslider.css')}}" type="text/css" media="screen" />
+
+    <script>
+        // Can also be used with $(document).ready()
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      animation: "slide",
+      controlNav: "thumbnails"
+    });
+  });
+    </script>
+    <!-- //FlexSlider-->
 </head>
 
 <body>
@@ -71,86 +85,8 @@
                         <!--/.navbar-header-->
 
                         <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav nav-font">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b
-                                            class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="products.html">Shoes</a></li>
-                                        <li><a href="products.html">Tees</a></li>
-                                        <li><a href="products.html">Tops</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="products.html">Tracks</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="products.html">Gear</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men<b
-                                            class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="col-sm-4 menu-img-pad">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="products.html">Joggers</a></li>
-                                                    <li><a href="products.html">Foot Ball</a></li>
-                                                    <li><a href="products.html">Cricket</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="products.html">Tennis</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="products.html">Casual</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-4 menu-img-pad">
-                                                <a href="#"><img src="{{('public/frontend/images/menu1.jpg')}}" alt="/"
-                                                        class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                            <div class="col-sm-4 menu-img-pad">
-                                                <a href="#"><img src="{{('public/frontend/images/menu2.jpg')}}" alt="/"
-                                                        class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Women<b
-                                            class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-2">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="products.html">Tops</a></li>
-                                                    <li><a href="products.html">Bottoms</a></li>
-                                                    <li><a href="products.html">Yoga Pants</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="products.html">Sports</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="products.html">Gym</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a href="#"><img src="{{('public/frontend/images/menu3.jpg')}}" alt="/"
-                                                        class="img-rsponsive men-img-wid" /></a>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">kids<b
-                                            class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="products.html">Tees</a></li>
-                                        <li><a href="products.html">Shorts</a></li>
-                                        <li><a href="products.html">Gear</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="products.html">Watches</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="products.html">Shoes</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Catch</a></li>
-                                <div class="clearfix"></div>
-                            </ul>
+                            {{-- partial here --}}
+                            @include('partial.category');
                             <div class="clearfix"></div>
                         </div>
                         <!--/.navbar-collapse-->

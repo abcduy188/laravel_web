@@ -11,13 +11,14 @@
 |
 */
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 //frontend
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
-
-
+Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
+Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 
 
 
@@ -39,7 +40,7 @@ Route::group(['middleware' => 'auth.roles'], function () {
 
     Route::post('/admin/save-category-product', 'CategoryProductController@save_category_product');
     Route::post('/admin/update-category-product/{categoryproduct_id}', 'CategoryProductController@update_category_product');
-
+    Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_cateogory_product');
     //product
     Route::get('/admin/add-product', 'ProductController@add_product');
     Route::get('/admin/all-product', 'ProductController@all_product');

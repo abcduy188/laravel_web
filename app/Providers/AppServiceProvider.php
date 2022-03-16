@@ -30,8 +30,27 @@ class AppServiceProvider extends ServiceProvider
             $data = array(
                 'category'=>array('cate 1', 'cate 2', 'cate3')
             );
-            //dd($category);
+            
             $view->with('category' , $category);
+        });
+        //
+        view()->composer('partial.cartpartial', function($view){
+            $sess = session()->get('cart');
+            $count = sizeof($sess);
+            $total = 0;
+            
+            if($count> 0){
+                foreach($sess as $item)
+                {
+                    $total+= $item['product_quantity']*$item['product_price'];
+                }
+                $view->with('total' , $total)->with('count', $count);
+            }else{
+                $view->with('total' , $total)->with('count', $count);
+            }
+           
+            
+           
         });
     }
 }

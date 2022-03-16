@@ -11,6 +11,7 @@
         addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
     </script>
     <meta charset utf="8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!--fonts-->
     <link href='//fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
 
@@ -19,8 +20,11 @@
     <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <!--coustom css-->
     <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"
+        type="text/css" />
     <!--shop-kart-js-->
     <script src="{{asset('public/frontend/js/simpleCart.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!--default-js-->
     <script src="{{asset('public/frontend/js/jquery-2.1.4.min.js')}}"></script>
     <!--bootstrap-js-->
@@ -40,6 +44,7 @@
     });
   });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <!-- //FlexSlider-->
 </head>
 
@@ -53,18 +58,7 @@
                 <div class="login-bars">
                     <a class="btn btn-default log-bar" href="register.html" role="button">Sign up</a>
                     <a class="btn btn-default log-bar" href="signup.html" role="button">Login</a>
-                    <div class="cart box_1">
-                        <a href="checkout.html">
-                            <h3>
-                                <div class="total">
-                                    <span class="simpleCart_total"></span>(<span id="simpleCart_quantity"
-                                        class="simpleCart_quantity"></span>)
-                                </div>
-                            </h3>
-                        </a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                        <div class="clearfix"> </div>
-                    </div>
+                    @include('partial.cartpartial');
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -154,5 +148,7 @@
         </div>
     </div>
 </body>
+@yield('script')
+
 
 </html>

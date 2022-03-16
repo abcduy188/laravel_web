@@ -42,42 +42,43 @@
                 <div class="clearfix"></div>
             </div>
             <hr class="featurette-divider">
-            <div class="shocase-rt-bot">
-                <div class="float-qty-chart">
+            <form>
+                @csrf
+                <div class="shocase-rt-bot">
+                    <div class="float-qty-chart">
+                        <ul>
+                            <li class="qty">
+                                <h4>QTY</h4>
+                                <select id="ddlViewBy" onclick="check2()">
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <input name="product_id" type="hidden" value="{{ $product-> id }}"
+                                    class="product_id_{{ $product-> id }}" />
+                                <input name="product_name" type="hidden" value="{{ $product-> Name }}"
+                                    class="product_name_{{ $product-> id }}" />
+                                <input name="product_image" type="hidden" value="{{ $product-> Image }}"
+                                    class="product_image_{{ $product-> id }}" />
+                                <input name="product_price" type="hidden" value="{{ $product-> Price }}"
+                                    class="product_price_{{ $product-> id }}" />
+                                <input name="product_qty" type="hidden" value="1" id="qty"
+                                    class="product_qty_{{ $product-> id }}" />
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
                     <ul>
-                        <li class="qty">
-                            <h3>Size Chart</h3>
-                            <select class="form-control siz-chrt">
-                                <option>6 US</option>
-                                <option>7 US</option>
-                                <option>8 US</option>
-                                <option>9 US</option>
-                                <option>10 US</option>
-                                <option>11 US</option>
-                            </select>
-                        </li>
-                        <li class="qty">
-                            <h4>QTY</h4>
-                            <select class="form-control qnty-chrt">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                            </select>
+                        <li class="ad-2-crt simpleCart_shelfItem">
+                            <a class="btn item_add" href="#" role="button" style="width: fit-content ;">Add To Cart</a>
+                            <button type="button" name="add-to-cart" data-id="{{ $product -> id }}"
+                                class="add-to-cart"><a class="btn" role="button" style="">Buy Now</a></button>
+
                         </li>
                     </ul>
-                    <div class="clearfix"></div>
                 </div>
-                <ul>
-                    <li class="ad-2-crt simpleCart_shelfItem">
-                        <a class="btn item_add" href="#" role="button">Add To Cart</a>
-                        <a class="btn" href="#" role="button">Buy Now</a>
-                    </li>
-                </ul>
-            </div>
+            </form>
+
             <div class="showcase-last">
                 <h3>product details</h3>
                 <ul>
@@ -97,8 +98,8 @@
             <ul class="nav nav-pills tab-nike" role="tablist">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
                         data-toggle="tab">Chi tiết</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                        data-toggle="tab">Nội dung</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Nội
+                        dung</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -143,9 +144,9 @@
                             <h3>{{ $item->Name }}</h3>
                         </div>
                         <div class="pull-right styl-price">
-                            <p><a href="{{ url('chi-tiet/'.$item->SeoTitle).'/'.$item-> id }}"
-                                    class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart"
-                                        aria-hidden="true"></span> <span class=" item_price">
+                            <p><a href="{{ url('chi-tiet/'.$item->SeoTitle).'/'.$item-> id }}" class="item_add"><span
+                                        class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span>
+                                    <span class=" item_price">
                                         <?php
                                         $price = $item->Price;
                                         echo number_format($price, 0, '', ',');
@@ -163,8 +164,64 @@
             </div>
         </div>
         @endforeach
-       
+
         <div class="clearfix"></div>
     </div>
 </div>
+
+@endsection
+@section('script')
+<script>
+    var check2 =() => {
+        var e = document.getElementById("ddlViewBy");
+     document.getElementById('qty').value =  e.value;
+      }
+   
+    $(document).ready(function(){
+        $('.add-to-cart').click(function(){
+        var id = $(this).data('id');
+        var cart_id = $('.product_id_'+id).val() ;
+        var cart_name = $('.product_name_'+id).val();
+        var cart_img = $('.product_image_'+id).val();
+        var cart_price = $('.product_price_'+id).val();
+        var cart_qty = $('.product_qty_'+id).val();
+        var _token = $('input[name="_token"]').val();
+
+
+           $.ajax({
+               url: '{{url('/add-cart-ajax') }}',
+               headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+               method: 'POST',
+              
+               data:{
+                _token:_token,
+                cart_id:cart_id,
+                cart_name:cart_name,
+                cart_img:cart_img,
+                cart_price:cart_price,
+                cart_qty:cart_qty
+            },
+               
+                success:function(data)
+                {
+                    swal({
+                        title:"abcduy says:",
+                        text:"Đã thêm sản phẩm vào giỏ hàng",
+                        showCancelButton: true,
+                        cancelButtonText:"Xem tiếp",
+                        confirmButtonClass:"btn-success",
+                        confirmButtonText:"Đi đến giỏ hàng",
+                        closeOnConfirm:false
+
+                    },
+                    function(){
+                        window.location.href = "{{ url('/gio-hang') }}"
+                    }
+                   );
+                }
+
+           });
+        });
+    });
+</script>
 @endsection

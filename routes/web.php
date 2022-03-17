@@ -19,9 +19,13 @@ Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
 Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
+Route::get('/gio-hang', 'CartController@index');
 
-
-
+//ajax
+Route::post('/add-cart-ajax', 'CartController@add_cart_ajax');
+Route::post('/update-cart', 'CartController@update_cart');
+Route::get('/del-cart-ajax/{id}', 'CartController@delete_cart');
+Route::get('/delete-all-cart', 'CartController@delete_cart_all');
 Route::group(['middleware' => 'auth.roles'], function () {
 
     //backend

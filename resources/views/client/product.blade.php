@@ -204,20 +204,21 @@
                
                 success:function(data)
                 {
-                    swal({
-                        title:"abcduy says:",
-                        text:"Đã thêm sản phẩm vào giỏ hàng",
-                        showCancelButton: true,
-                        cancelButtonText:"Xem tiếp",
-                        confirmButtonClass:"btn-success",
-                        confirmButtonText:"Đi đến giỏ hàng",
-                        closeOnConfirm:false
+                //     swal({
+                //         title:"abcduy says:",
+                //         text:"Đã thêm sản phẩm vào giỏ hàng",
+                //         showCancelButton: true,
+                //         cancelButtonText:"Xem tiếp",
+                //         confirmButtonClass:"btn-success",
+                //         confirmButtonText:"Đi đến giỏ hàng",
+                //         closeOnConfirm:false
 
-                    },
-                    function(){
-                        window.location.href = "{{ url('/gio-hang') }}"
-                    }
-                   );
+                //     },
+                //     function(){
+                //         window.location.href = "{{ url('/gio-hang') }}"
+                //     }
+                //    );
+                alert('Đã thêm sản phẩm vào giỏ hàng');
                 }
 
            });

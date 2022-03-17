@@ -2,6 +2,7 @@
 @section('content')
 <div class="check">
     <div class="container">
+        @if (session()->get('cart'))
         @php
         $totalprice = 0;
         foreach (session()->get('cart') as $item) {
@@ -10,7 +11,7 @@
         $totalpriceafter = $totalprice -($totalprice/10);
         @endphp
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Continue to basket</a>
+            <a class="continue" href="#">Tiếp tục mua hàng</a>
             <div class="price-details">
                 <h3>Price Details</h3>
                 <span>Tổng tiền</span>
@@ -31,10 +32,10 @@
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"></div>
-            <a class="order" href="#">Place Order</a>
+            <a class="order" href="#">Đặt hàng</a>
         </div>
         <div class="col-md-9 cart-items">
-            <h1>My Shopping Bag (
+            <h1>Giỏ hàng của tôi (
                 @php
                 $qty = session()->get('cart');
                 echo sizeof($qty);
@@ -42,6 +43,7 @@
 
                 )</h1>
             <form action="{{ url('update-cart') }}" method="POST">
+                @csrf
                 @foreach ( session()->get('cart') as $item)
                 <div class="cart-header" id="class-product-{{$item['session_id']}}">
                     <div class="close1" data-id="{{ $item['session_id'] }}"><span class="glyphicon glyphicon-remove"
@@ -58,7 +60,8 @@
                                 </li>
                                 <li>
 
-                                    <p>Số lượng :<input type="number" value="{{ $item['product_quantity'] }}" name="qty"
+                                    <p>Số lượng :<input type="number" value="{{ $item['product_quantity'] }}"
+                                            name="cart_qty[{{ $item['session_id'] }}]"
                                             style="width: 50px; text-align: center" min="1"> </p>
                                 </li>
                                 <li>
@@ -84,12 +87,23 @@
                         <input type="submit" id="btn_update_qty" class="btn btn-default btn-sm"
                             value="Cập nhật giỏ hàng" name="update_qty" style="background: black; color: white;"
                             onmouseover="this.style.color='red'">
+                            <a class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
                     </div>
                 </div>
             </form>
 
 
         </div>
+        @else
+        <div class="col-md-3 cart-total">
+            
+
+            <span>Giỏ hàng trống</span>
+            <a class="order" href="{{ url('/trang-chu') }}">Mua hàng</a>
+        </div>
+
+        @endif
+
 
         <div class="clearfix"> </div>
     </div>

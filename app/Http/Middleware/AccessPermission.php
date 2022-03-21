@@ -31,7 +31,8 @@ class AccessPermission
         {
             return $next($request);
         }else{
-            return redirect('/admin/login')->with('message','You do not have permission');
+
+            return redirect('/trang-chu')->with('message','You do not have permission');
         }
         
     }

@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderDetails;
 use App\Product;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 session_start();
 class CartController extends Controller
 {
     public function index()
     {
-        $cart = session()->get('cart');
         return view('client.cart');
     }
+    
     public function add_cart_ajax(Request $request)
     {
         if ($request->ajax()) {
@@ -100,5 +104,52 @@ class CartController extends Controller
             return redirect('/trang-chu');
         }
         return redirect('/trang-chu');
+    }
+    public function checkout()
+    {
+        $cart = session()->get('cart');
+        return view('client.checkout');
+    }
+    public function confirmorder(Request $request)
+    {
+        $order_code = substr(md5(microtime()),rand(0,26),5);
+        $data = $request->all();
+      
+        $order = new Order();
+        $order->customer_id = Auth::id();
+        $order->shipping_name = $data['ship_name'];
+        $order->shipping_address = $data['ship_address'];
+        $order->shipping_phone= $data['ship_phone'];
+        $order->shipping_email= $data['ship_email'];
+        $order->shipping_type= $data['payment_option'];
+        $order->order_note= $data['ship_note'];
+        $order->CreateDate= Carbon::now('Asia/Ho_Chi_Minh');;
+        $order->order_status= 0;
+        $order->order_code = $order_code;
+        $check= $order->save();
+        if($check)
+        {
+            $orderde = Order::where('order_code','=', $order_code)->take(1)->first();
+            if(session()->get('cart'))
+            {
+                foreach(session()->get('cart') as $key => $cart){
+                    $order_detail = new OrderDetails();
+                    $order_detail->order_id = $orderde->order_id ;
+                    $order_detail->product_id= $cart['product_id'];
+                    $order_detail->product_name=$cart['product_name'];
+                    $order_detail->product_price=$cart['product_price'];
+                    $order_detail->product_sales_quantity=$cart['product_quantity'];
+                    $order_detail->save();
+                }
+            }
+            $cart = session()->get('cart');
+            if ($cart) {
+                session()->forget('cart');
+                return redirect('/trang-chu');
+            }
+            return redirect('/trang-chu');
+        }
+
+       
     }
 }

@@ -21,12 +21,16 @@ Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 Route::get('/gio-hang', 'CartController@index');
 Route::get('/checkout', 'CartController@checkout')->middleware('user');
-Route::post('/confirm-order', 'CartController@confirmorder');
-//ajax
+
+
+
 Route::post('/add-cart-ajax', 'CartController@add_cart_ajax');
 Route::post('/update-cart', 'CartController@update_cart');
+
 Route::get('/del-cart-ajax/{id}', 'CartController@delete_cart');
 Route::get('/delete-all-cart', 'CartController@delete_cart_all');
+
+Route::post('/confirm-order', 'CartController@confirmorder');
 Route::group(['middleware' => 'auth.roles'], function () {
 
   //backend
@@ -37,43 +41,51 @@ Route::group(['middleware' => 'auth.roles'], function () {
   Route::get('/admin/add-category-product', 'CategoryProductController@add_category_product');
   Route::get('/admin/all-category-product', 'CategoryProductController@all_category_product');
   Route::get('/admin/edit-category-product/{categoryproduct_id}', 'CategoryProductController@edit_category_product');
-  Route::get('/admin/delete-category-product/{categoryproduct_id}', 'CategoryProductController@delete_category_product');
   Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_category_product');
+  Route::get('/admin/delete-category-product/{categoryproduct_id}', 'CategoryProductController@delete_category_product');
+ 
   // {categoryproduct_id} khai bao tuy y
   Route::get('/admin/active-category-product/{categoryproduct_id}', 'CategoryProductController@active_category_product');
   Route::get('/admin/unactive-category-product/{categoryproduct_id}', 'CategoryProductController@unactive_category_product');
 
   Route::post('/admin/save-category-product', 'CategoryProductController@save_category_product');
   Route::post('/admin/update-category-product/{categoryproduct_id}', 'CategoryProductController@update_category_product');
-  Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_cateogory_product');
+
   //product
   Route::get('/admin/add-product', 'ProductController@add_product');
   Route::get('/admin/all-product', 'ProductController@all_product');
   Route::get('/admin/edit-product/{product_id}', 'ProductController@edit_product');
-
   Route::get('/admin/deleted-product', 'ProductController@deleted_product');
-  // {categoryproduct_id} khai bao tuy y
+
   Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
   Route::get('/admin/unactive-product/{product_id}', 'ProductController@unactive_product');
 
-  
   Route::get('/admin/active-highlights/{product_id}', 'ProductController@active_highlights');
   Route::get('/admin/unactive-highlights/{product_id}', 'ProductController@unactive_highlights');
 
-
-
   Route::post('/admin/save-product', 'ProductController@save_product');
   Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
+
   //banner
   Route::get('/admin/add-banner', 'SlidesController@add_slide');
   Route::get('/admin/all-banner', 'SlidesController@index');
   Route::get('/admin/edit-banner/{banner_id}', 'SlidesController@edit_banner');
-  Route::post('/admin/save-banner', 'SlidesController@save_slide');
-  Route::post('/admin/update-banner/{banner_id}', 'SlidesController@update_banner');
+
   Route::get('/admin/active-banner/{banner_id}', 'SlidesController@active_banner');
   Route::get('/admin/unactive-banner/{banner_id}', 'SlidesController@unactive_banner');
-  //user
 
+  Route::post('/admin/save-banner', 'SlidesController@save_slide');
+  Route::post('/admin/update-banner/{banner_id}', 'SlidesController@update_banner');
+
+
+  //orderhistory
+  Route::get('/admin/all-order', 'OrderController@all_order');
+  Route::get('/admin/detail-order/{order_code}', 'OrderController@details');
+  Route::get('/admin/accept/{id}', 'OrderController@accept_order');
+  Route::get('/admin/cancel/{id}', 'OrderController@cancel_order');
+ 
+ 
+ //user
   Route::get('/admin/all-user', 'UserController@index');
   Route::group(['middleware' => 'admin.role'], function () {
     Route::get('/admin/add-user', 'UserController@add_product');

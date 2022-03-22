@@ -110,6 +110,9 @@ class CartController extends Controller
         $cart = session()->get('cart');
         return view('client.checkout');
     }
+
+
+
     public function confirmorder(Request $request)
     {
         $order_code = substr(md5(microtime()),rand(0,26),5);
@@ -124,7 +127,7 @@ class CartController extends Controller
         $order->shipping_type= $data['payment_option'];
         $order->order_note= $data['ship_note'];
         $order->CreateDate= Carbon::now('Asia/Ho_Chi_Minh');;
-        $order->order_status= 0;
+        $order->order_status= 1;
         $order->order_code = $order_code;
         $check= $order->save();
         if($check)
@@ -137,7 +140,7 @@ class CartController extends Controller
                     $order_detail->order_id = $orderde->order_id ;
                     $order_detail->product_id= $cart['product_id'];
                     $order_detail->product_name=$cart['product_name'];
-                    $order_detail->product_price=$cart['product_price'];
+                    $order_detail->product_price=$cart['product_price']*$cart['product_quantity'];
                     $order_detail->product_sales_quantity=$cart['product_quantity'];
                     $order_detail->save();
                 }

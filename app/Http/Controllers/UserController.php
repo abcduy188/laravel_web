@@ -15,7 +15,6 @@ class UserController extends Controller
 {
     public function all_product()
     {
-
         $all = DB::table('user')->get();
         $manage_product = view('admin.product.all_product')->with('all_product', $all);
         return view('admin_layout')->with('admin.all_product', $manage_product);

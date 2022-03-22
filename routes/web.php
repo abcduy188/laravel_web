@@ -56,6 +56,12 @@ Route::group(['middleware' => 'auth.roles'], function () {
   Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
   Route::get('/admin/unactive-product/{product_id}', 'ProductController@unactive_product');
 
+  
+  Route::get('/admin/active-highlights/{product_id}', 'ProductController@active_highlights');
+  Route::get('/admin/unactive-highlights/{product_id}', 'ProductController@unactive_highlights');
+
+
+
   Route::post('/admin/save-product', 'ProductController@save_product');
   Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
   //banner

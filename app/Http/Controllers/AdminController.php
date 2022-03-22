@@ -21,6 +21,7 @@ class AdminController extends Controller
         $admin_id = Auth::id();
         if($admin_id)
         {
+            
             Redirect::to('admin.dashboard');
 
         }
@@ -34,6 +35,7 @@ class AdminController extends Controller
         return view('admin.dashboard');
         
     }
+    
 
    
 }

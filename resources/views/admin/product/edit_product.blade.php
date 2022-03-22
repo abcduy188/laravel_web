@@ -62,7 +62,22 @@
                     <textarea class="form-control" name="product_description" cols="5"
                         rows="5">{{ html_entity_decode($edit_product->Description) }}</textarea>
                 </div>
-
+                <div class="form-group">
+                    <label for="input-1">CPU </label>
+                    <input type="text" class="form-control" name="product_cpu"
+                    value="{{$edit_product->cpu }}" >
+                </div>
+                <div class="form-group">
+                    <label for="input-1">Card màn hình: </label>
+                    <input type="text" class="form-control" name="product_vga"
+                    value="{{$edit_product->vga }}" >
+                </div>
+                <div class="form-group">
+                    <label for="input-1">Màn hình: </label>
+                    <input type="text" class="form-control" name="product_monitor"
+                    value="{{$edit_product->monitor }}" >
+                </div>
+               
                 <div class="form-group">
                     <button type="submit" class="btn btn-light px-5"><i
                             class="icon-lock"></i> Cập sản phẩm</button>

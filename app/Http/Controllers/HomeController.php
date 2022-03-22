@@ -13,9 +13,10 @@ class HomeController extends Controller
     //
     public function index()
     {
-        $product = Product::orderBy('id', 'DESC')->take(6)->get();
+        $product = Product::orderBy('id', 'DESC')->where('highlights','=','1')->take(6)->get();
+        $productnew = Product::orderBy('id', 'DESC')->take(2)->get();
         $slides = Slides::orderBy('id','DESC')->where('status',1)->get();
-        return view('client.home')->with('product', $product)->with('slides', $slides);
+        return view('client.home')->with('product', $product)->with('slides', $slides)->with('productnew', $productnew);
     }
     public function category($seotitle, $id)
     {

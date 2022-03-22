@@ -63,7 +63,29 @@
                     <textarea  class="form-control" name="product_description"
                         placeholder="Giá KM" cols="5" rows="5"></textarea>
                 </div>
-                
+                <div class="form-group">
+                    <label for="input-1">CPU </label>
+                    <input type="text" class="form-control" name="product_cpu"
+                       >
+                </div>
+                <div class="form-group">
+                    <label for="input-1">Card màn hình: </label>
+                    <input type="text" class="form-control" name="product_vga"
+                       >
+                </div>
+                <div class="form-group">
+                    <label for="input-1">Màn hình: </label>
+                    <input type="text" class="form-control" name="product_monitor"
+                       >
+                </div>
+                <div class="form-group">
+                    <label for="input-2">Sản phẩm nổi bật </label>
+                    <select name="product_highlights" class="form-control input-sm m-bot15">
+                        <option value="0">Không</option>
+                        <option value="1">Có</option>
+
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="input-2">Hiển thị: </label>
                     <select name="product_status" class="form-control input-sm m-bot15">
@@ -72,6 +94,7 @@
 
                     </select>
                 </div>
+               
                 <div class="form-group">
                     <button type="submit" class="btn btn-light px-5" name="add_category_product"><i
                             class="icon-lock"></i> Thêm sản phẩm</button>

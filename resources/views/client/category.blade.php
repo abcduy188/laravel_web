@@ -13,9 +13,9 @@
                             <h3>{{ $item->Name }}</h3>
                         </div>
                         <div class="pull-right styl-price">
-                            <p><a href="{{ url('chi-tiet/'.$item->SeoTitle).'/'.$item-> id }}"
-                                    class="item_add"><span class="glyphicon glyphicon-shopping-cart grid-cart"
-                                        aria-hidden="true"></span> <span class=" item_price">
+                            <p><a href="{{ url('chi-tiet/'.$item->SeoTitle).'/'.$item-> id }}" class="item_add"><span
+                                        class="glyphicon glyphicon-shopping-cart grid-cart" aria-hidden="true"></span>
+                                    <span class=" item_price">
                                         <?php
                                         $price = $item->Price;
                                         echo number_format($price, 0, '', ',');
@@ -33,8 +33,9 @@
             </div>
         </div>
         @endforeach
-        
-    <div class="clearfix"></div>
+
+        <div class="clearfix"></div>
+        <span>{{$product->links()}}</span>
 </div>
 </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\CategoryProduct;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -48,5 +49,6 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('total', $total)->with('count', $count);
             }
         });
+        Paginator::useBootstrap();
     }
 }

@@ -29,7 +29,7 @@
                             <th>Tên danh mục</th>
                             <th>Hình ảnh</th>
                             <th>Hiển thị</th>
-
+                            <th>Nổi bật</th>
                             <th>Ngày thêm</th>
                             <th>Người thêm</th>
                             <th></th>
@@ -51,6 +51,16 @@
                                         class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
                                 @else
                                 <a href="{{URL::to ('/admin/unactive-product/'.$item -> id ) }}"><span
+                                        class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
+                                @endif
+
+                            </td>
+                            <td>
+                                @if ($item ->highlights == 0)
+                                <a href="{{URL::to ('/admin/active-highlights/'.$item -> id ) }}"><span
+                                        class="fa-toggle-styling fa fa-solid fa-toggle-off"></span></a>
+                                @else
+                                <a href="{{URL::to ('/admin/unactive-highlights/'.$item -> id ) }}"><span
                                         class="fa-toggle-styling fa fa-solid fa-toggle-on"></span></a>
                                 @endif
 

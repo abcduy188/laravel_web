@@ -51,34 +51,34 @@
         </div>
     </div>
     <div class="feel-fall">
+        
         <div class="container">
+            <h2>Sản phẩm mới</h2>
+            @foreach ($productnew as  $item)
             <div class="pull-left fal-box">
                 <div class=" fall-left">
-                    <h3>Fall</h3>
-                    <img src="{{('public/frontend/images/f-l.png')}}" alt="/" class="img-responsive fl-img-wid">
+                    <h5> {{ $item->Name }}</h5>
+                    <img src="{{$item->Image}}" alt="/" class="img-responsive fl-img-wid" style="height: 200px">
                     <p>Inspiration and innovation<br> for every athlete in the world</p>
                     <span class="fel-fal-bar"></span>
                 </div>
             </div>
-            <div class="pull-right fel-box">
-                <div class="feel-right">
-                    <h3>Feel</h3>
-                    <img src="{{('public/frontend/images/f-r.png')}}" alt="/" class="img-responsive fl-img-wid">
-                    <p>Inspiration and innovation<br> for every athlete in the world</p>
-                    <span class="fel-fal-bar2"></span>
-                </div>
-            </div>
+            @endforeach
+           
+          
             <div class="clearfix"></div>
         </div>
     </div>
     <div class="shop-grid">
+       
         <div class="container">
+            <h2>Sản phẩm nổi bật</h2>
             @foreach ($product as $item)
             <div class="col-md-4 grid-stn simpleCart_shelfItem">
                 <!-- normal -->
                 <div class="ih-item square effect3 bottom_to_top">
                     <div class="bottom-2-top">
-                        <div class="img"><img src="{{$item->Image}}" alt="/" class="img-responsive gri-wid"></div>
+                        <div class="img"><img src="{{$item->Image}}" alt="/" class="img-responsive gri-wid" style="height: 250px"></div>
                         <div class="info">
                             <div class="pull-left styl-hdn">
                                 <h3>{{ $item->Name }}</h3>

@@ -94,6 +94,24 @@
                     </div>
                 </div>
             </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseslide"
+                    aria-expanded="true" aria-controls="collapseslide">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Banner</span>
+                </a>
+                <div id="collapseslide" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Banner</h6>
+
+                        <a class="collapse-item" href="{{URL::to  ('/admin/all-banner') }}"><b>Liệt kê Banner</b> </a>
+                        <a class="collapse-item" href="{{URL::to  ('/admin/add-banner') }}">Thêm Banner</a>
+                        <a class="collapse-item" href="{{URL::to  ('/admin/deleted-banner') }}">Banner đã xóa</a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

@@ -35,7 +35,7 @@
         @endforeach
 
         <div class="clearfix"></div>
-        <span>{{$product->links()}}</span>
+        <span style="text-align: center;">{{$product->links()}}</span>
 </div>
 </div>
 @endsection

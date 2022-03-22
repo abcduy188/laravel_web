@@ -20,7 +20,8 @@ Route::get('/trang-chu', 'HomeController@index');
 Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 Route::get('/gio-hang', 'CartController@index');
-
+Route::get('/checkout', 'CartController@checkout')->middleware('user');
+Route::post('/confirm-order', 'CartController@confirmorder');
 //ajax
 Route::post('/add-cart-ajax', 'CartController@add_cart_ajax');
 Route::post('/update-cart', 'CartController@update_cart');

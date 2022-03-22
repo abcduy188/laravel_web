@@ -10,36 +10,71 @@
         }
         $totalpriceafter = $totalprice -($totalprice/10);
         @endphp
-        <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Tiếp tục mua hàng</a>
-            <div class="price-details">
-                <h3>Price Details</h3>
-                <span>Tổng tiền</span>
-                <span class="total1">{{ number_format($totalprice) }}VND</span>
-                <span>Discount</span>
-                <span class="total1">10%(Festival Offer)</span>
-                <span>Delivery Charges</span>
-                <span class="total1">150.00</span>
-                <div class="clearfix"></div>
-            </div>
-            <hr class="featurette-divider">
-            <ul class="total_price">
-                <li class="last_price">
-                    <h4>TOTAL</h4>
-                </li>
+<div>
+    <div class="col-md-6 reg-form">
+		<div class="container">
+			<div class="reg" >
+				 <form action="{{ URL::to('/confirm-order') }}" method="POST">
+                    {{ csrf_field() }}
+					<ul>
+						<li class="text-info">Email </li>
+						<li><input type="text" name="ship_email" class="ship_email" value="{{ Auth::user()->email }}"></li>
+					</ul>
+					<ul>
+						<li class="text-info">Họ tên người nhận: </li>
+						<li><input type="text"name="ship_name" class="ship_name"value="{{ Auth::user()->Name }}"></li>
+					 </ul>
+                     <ul>
+						<li class="text-info">Số điện thoại: </li>
+						<li><input type="text"name="ship_phone"class="ship_phone" value="{{ Auth::user()->Phone }}"></li>
+					</ul>				 
+					<ul>
+						<li class="text-info">Địa chỉ nhận hàng: </li>
+						<li><input type="text"name="ship_address"class="ship_address" value=""></li>
+					</ul>
+				
+					<ul>
+						<li class="text-info">Ghi chú thêm:</li>
+						<li><input type="text"name="ship_note"class="ship_note" value=""></li>
+					</ul>
+                    <ul>
+                        <li class="text-info">Chọn hình thức</li>
+                        <select name="payment_option" class="payment_option">
+                            <option value="0"> Paypal</option>
+                            <option value="1" selected> Tiền mặt</option>
+                        </select>
+                    </ul>					
+					<input type="submit" class="send_order" value="Xác nhận đặt hàng">
+				</form>
+			</div>
+		</div>
+	</div>
 
-                <li class="last_price"><span>{{ number_format($totalpriceafter) }}VND</span></li>
-                <div class="clearfix"> </div>
-            </ul>
+    <div class="col-md-3 cart-total" style="margin-left: 10px; padding-top: 20px">
+        <div class="price-details">
+            <h3>Price Details</h3>
+            <span>Tổng tiền</span>
+            <span class="total1">{{ number_format($totalprice) }}VND</span>
+            <span>Discount</span>
+            <span class="total1">10%(Festival Offer)</span>
+            <span>Delivery Charges</span>
+            <span class="total1">150.00</span>
             <div class="clearfix"></div>
-           
-            @if (Auth::id())
-            <a class="order" href="{{ url('/checkout') }}">Đặt hàng</a>
-            @else
-            <a class="order" href="{{ url('/admin/login') }}">Bạn phải đăng nhậ trước</a>
-            @endif
-                                
         </div>
+        <hr class="featurette-divider">
+        <ul class="total_price">
+            <li class="last_price">
+                <h4>TOTAL</h4>
+            </li>
+
+            <li class="last_price"><span>{{ number_format($totalpriceafter) }}VND</span></li>
+            <div class="clearfix"> </div>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+            <!-- reg-form -->
+	
         <div class="col-md-9 cart-items">
             <h1>Giỏ hàng của tôi (
                 @php
@@ -93,7 +128,7 @@
                         <input type="submit" id="btn_update_qty" class="btn btn-default btn-sm"
                             value="Cập nhật giỏ hàng" name="update_qty" style="background: black; color: white;"
                             onmouseover="this.style.color='red'">
-                        <a class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
+                            <a class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
                     </div>
                 </div>
             </form>
@@ -102,7 +137,7 @@
         </div>
         @else
         <div class="col-md-3 cart-total">
-
+            
 
             <span>Giỏ hàng trống</span>
             <a class="order" href="{{ url('/trang-chu') }}">Mua hàng</a>
@@ -125,5 +160,14 @@
             });
             });	  
         });
+</script>
+@endsection
+@section('script')
+<script>
+    var check2 =() => {
+        var e = document.getElementById("ddlViewBy");
+     document.getElementById('qty').value =  e.value;
+      }
+   
 </script>
 @endsection

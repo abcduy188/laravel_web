@@ -55,11 +55,20 @@
                 <div class="logo">
                     <a href="{{URL::to('/trang-chu')}}">N-AIR</a>
                 </div>
+                @if (Auth::id())
                 <div class="login-bars">
-                    <a class="btn btn-default log-bar" href="register.html" role="button">Sign up</a>
-                    <a class="btn btn-default log-bar" href="signup.html" role="button">Login</a>
+                    <a class="btn btn-default log-bar" href="{{ url('/thong-tin') }}" role="button">Hello {{ Auth::user()->Name }}</a>
+                    <a class="btn btn-default log-bar" href="{{ url('/admin/logout') }}" role="button">Logout</a>
                     @include('partial.cartpartial');
                 </div>
+                @else
+                <div class="login-bars">
+                    <a class="btn btn-default log-bar" href="{{ url('/register') }}" role="button">Sign up</a>
+                    <a class="btn btn-default log-bar" href="{{ url('/admin/login') }}" role="button">Login</a>
+                    @include('partial.cartpartial');
+                </div>
+                @endif
+               
                 <div class="clearfix"></div>
             </div>
             <!---menu-----bar--->

@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function category($seotitle, $id)
     {
 
-        $all = Product::all()->where('category_id', $id);
+        $all = Product::where('category_id', $id)->paginate(2);
         return view('client.category')->with('product', $all);
     }
     public function product($seotitle, $id)

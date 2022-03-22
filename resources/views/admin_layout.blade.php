@@ -112,6 +112,20 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseorder"
+                    aria-expanded="true" aria-controls="collapseorder">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>quản lí Đơn hàng</span>
+                </a>
+                <div id="collapseorder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Banner</h6>
+
+                        <a class="collapse-item" href="{{URL::to  ('/admin/all-order') }}"><b>Liệt kê đơn hàng</b> </a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

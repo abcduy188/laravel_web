@@ -9,36 +9,32 @@
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                   
+                    @for ($i = 1; $i<= sizeof($slides); $i++)
+                         <li data-target="#myCarousel" data-slide-to="{{ $i }}"></li>
+                    @endfor
+                   
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="{{('public/frontend//images/shoe3.jpg')}}" alt="...">
+                   @php
+                       $a = 0;
+                   @endphp
+                    @foreach ($slides as $item )
+                    @php
+                        $a++;
+                    @endphp
+                    <div class="item {{ $a ==1? 'active':'' }} ">
+                        <img src="{{$item->slide_image}}" alt="..." height="200px">
                         <div class="carousel-caption car-re-posn">
-                            <h3>AirMax</h3>
-                            <h4>You feel to fall</h4>
+                            <h3>{{ $item->slide_name }}</h3>
+                            <h4>{{ $item->slide_desc }}</h4>
                             <span class="color-bar"></span>
                         </div>
                     </div>
-                    <div class="item">
-                        <img src="{{('public/frontend//images/shoe1.jpg')}}" alt="...">
-                        <div class="carousel-caption car-re-posn">
-                            <h3>AirMax</h3>
-                            <h4>You feel to fall</h4>
-                            <span class="color-bar"></span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="{{('public/frontend//images/shoe2.jpg')}}" alt="...">
-                        <div class="carousel-caption car-re-posn">
-                            <h3>AirMax</h3>
-                            <h4>You feel to fall</h4>
-                            <span class="color-bar"></span>
-                        </div>
-                    </div>
+                    @endforeach
+                   
                 </div>
 
                 <!-- Controls -->

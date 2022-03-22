@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\CategoryProduct;
 use App\Product;
+use App\Slides;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class HomeController extends Controller
 {
     //
     public function index()
     {
-        $product = Product::orderBy('CreateDate')->take(6)->get();
-        return view('client.home')->with('product', $product);
+        $product = Product::orderBy('id', 'DESC')->take(6)->get();
+        $slides = Slides::orderBy('id','DESC')->where('status',1)->get();
+        return view('client.home')->with('product', $product)->with('slides', $slides);
     }
     public function category($seotitle, $id)
     {

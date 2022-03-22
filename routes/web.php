@@ -29,49 +29,56 @@ Route::get('/del-cart-ajax/{id}', 'CartController@delete_cart');
 Route::get('/delete-all-cart', 'CartController@delete_cart_all');
 Route::group(['middleware' => 'auth.roles'], function () {
 
-    //backend
-    Route::get('/dashboard', 'AdminController@show_dashboard');
+  //backend
+  Route::get('/dashboard', 'AdminController@show_dashboard');
 
 
-    //category product
-    Route::get('/admin/add-category-product', 'CategoryProductController@add_category_product');
-    Route::get('/admin/all-category-product', 'CategoryProductController@all_category_product');
-    Route::get('/admin/edit-category-product/{categoryproduct_id}', 'CategoryProductController@edit_category_product');
-    Route::get('/admin/delete-category-product/{categoryproduct_id}', 'CategoryProductController@delete_category_product');
-    Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_category_product');
-    // {categoryproduct_id} khai bao tuy y
-    Route::get('/admin/active-category-product/{categoryproduct_id}', 'CategoryProductController@active_category_product');
-    Route::get('/admin/unactive-category-product/{categoryproduct_id}', 'CategoryProductController@unactive_category_product');
+  //category product
+  Route::get('/admin/add-category-product', 'CategoryProductController@add_category_product');
+  Route::get('/admin/all-category-product', 'CategoryProductController@all_category_product');
+  Route::get('/admin/edit-category-product/{categoryproduct_id}', 'CategoryProductController@edit_category_product');
+  Route::get('/admin/delete-category-product/{categoryproduct_id}', 'CategoryProductController@delete_category_product');
+  Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_category_product');
+  // {categoryproduct_id} khai bao tuy y
+  Route::get('/admin/active-category-product/{categoryproduct_id}', 'CategoryProductController@active_category_product');
+  Route::get('/admin/unactive-category-product/{categoryproduct_id}', 'CategoryProductController@unactive_category_product');
 
-    Route::post('/admin/save-category-product', 'CategoryProductController@save_category_product');
-    Route::post('/admin/update-category-product/{categoryproduct_id}', 'CategoryProductController@update_category_product');
-    Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_cateogory_product');
-    //product
-    Route::get('/admin/add-product', 'ProductController@add_product');
-    Route::get('/admin/all-product', 'ProductController@all_product');
-    Route::get('/admin/edit-product/{product_id}', 'ProductController@edit_product');
+  Route::post('/admin/save-category-product', 'CategoryProductController@save_category_product');
+  Route::post('/admin/update-category-product/{categoryproduct_id}', 'CategoryProductController@update_category_product');
+  Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_cateogory_product');
+  //product
+  Route::get('/admin/add-product', 'ProductController@add_product');
+  Route::get('/admin/all-product', 'ProductController@all_product');
+  Route::get('/admin/edit-product/{product_id}', 'ProductController@edit_product');
 
-    Route::get('/admin/deleted-product', 'ProductController@deleted_product');
-    // {categoryproduct_id} khai bao tuy y
-    Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
-    Route::get('/admin/unactive-product/{product_id}', 'ProductController@unactive_product');
+  Route::get('/admin/deleted-product', 'ProductController@deleted_product');
+  // {categoryproduct_id} khai bao tuy y
+  Route::get('/admin/active-product/{product_id}', 'ProductController@active_product');
+  Route::get('/admin/unactive-product/{product_id}', 'ProductController@unactive_product');
 
-    Route::post('/admin/save-product', 'ProductController@save_product');
-    Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
+  Route::post('/admin/save-product', 'ProductController@save_product');
+  Route::post('/admin/update-product/{product_id}', 'ProductController@update_product');
+  //banner
+  Route::get('/admin/add-banner', 'SlidesController@add_slide');
+  Route::get('/admin/all-banner', 'SlidesController@index');
+  Route::get('/admin/edit-banner/{banner_id}', 'SlidesController@edit_banner');
+  Route::post('/admin/save-banner', 'SlidesController@save_slide');
+  Route::post('/admin/update-banner/{banner_id}', 'SlidesController@update_banner');
+  Route::get('/admin/active-banner/{banner_id}', 'SlidesController@active_banner');
+  Route::get('/admin/unactive-banner/{banner_id}', 'SlidesController@unactive_banner');
+  //user
 
-    //user
+  Route::get('/admin/all-user', 'UserController@index');
+  Route::group(['middleware' => 'admin.role'], function () {
+    Route::get('/admin/add-user', 'UserController@add_product');
+    Route::get('/admin/edit-user/{user_id}', 'UserController@edit_user');
+    Route::post('/admin/update-user/{user_id}', 'UserController@update_user');
+    Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_product');
+    Route::post('/assign-roles', 'UserController@assign_roles');
+    //Author
 
-    Route::get('/admin/all-user', 'UserController@index');
-    Route::group(['middleware' => 'admin.role'], function () {
-        Route::get('/admin/add-user', 'UserController@add_product');
-        Route::get('/admin/edit-user/{user_id}', 'UserController@edit_user');
-        Route::post('/admin/update-user/{user_id}', 'UserController@update_user');
-        Route::get('/admin/delete-product/{product_id}', 'ProductController@delete_product');
-        Route::post('/assign-roles', 'UserController@assign_roles');
-        //Author
-
-        Route::get('/admin/delete-user/{user_id}', 'UserController@delete_user');
-    });
+    Route::get('/admin/delete-user/{user_id}', 'UserController@delete_user');
+  });
 });
 
 

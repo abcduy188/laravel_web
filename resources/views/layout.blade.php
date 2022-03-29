@@ -85,8 +85,8 @@
                         @include('partial.category');
                     </li>
                 </ul>
-                <form class="example" action="#" style="margin:auto;max-width:300px">
-                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="search2">
+                <form class="example" action="{{ URL::to('/tim-kiem') }}" style="margin:auto;max-width:300px" method="GET">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>

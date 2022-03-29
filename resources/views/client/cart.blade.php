@@ -19,7 +19,7 @@
         $totalpriceafter = $totalprice -($totalprice/10);
         @endphp
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Tiếp tục mua hàng</a>
+            <a class="continue" href="{{ url('/trang-chu') }}">Tiếp tục mua hàng</a>
             <div class="price-details">
                 <h3>Price Details</h3>
                 <span>Tổng tiền</span>

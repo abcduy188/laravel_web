@@ -5,7 +5,9 @@
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"> <a href="/shopphp/san-pham/{{ $product->category-> SeoTitle }}/{{$product->category -> id }}">{{ $product->category->CategoryName }}</a></li>
+                <li class="breadcrumb-item"> <a
+                        href="/shopphp/san-pham/{{ $product->category-> SeoTitle }}/{{$product->category -> id }}">{{ $product->category->CategoryName }}</a>
+                </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $product->Name }}</li>
             </ol>
         </nav>
@@ -25,33 +27,49 @@
         <div class="col-md-4 showcase">
             <div class="showcase-rt-top">
                 <div class="row">
-                    <div class="col-8"><div class="pull-left shoe-name">
-                    <h3>{{ $product->Name }}</h3>
-                    <p></p>
-                    <h4> <?php
-                        $price = $product->Price;
-                        echo number_format($price, 0, '', ',');
-                             ?>VND</h4>
-                </div></div>
+                    <div class="col-8">
+                        <div class="pull-left shoe-name">
+                            <h3 style="color: crimson">{{ $product->Name }}</h3>
+                            <p></p>
+                            <?php
+                                $price = 0;
+                                $product->PromotionPrice != 0 ? $price = $product->PromotionPrice : '';
+
+                                if($price!= 0)
+                                {
+                                    echo '<h4>'.number_format($price, 0, '', ',').'VND</h4>';
+                                    echo '<br>';
+                                    echo '<h5><strike>'.number_format($product->Price, 0, '', ',').'VND</strike></h5>';
+                                }else {
+                                    echo  '<h4>'.number_format($product->Price, 0, '', ',').'VND</h4>';
+                                }
+                                
+                                ?>
+
+
+
+
+                        </div>
+                    </div>
                     <div class="col-4">
-                    <div class="pull-left rating-stars">
-                    <ul style="display: inline-flex;">
-                        <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
-                                    aria-hidden="true"></span></a></li>
-                        <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
-                                    aria-hidden="true"></span></a></li>
-                        <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
-                                    aria-hidden="true"></span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a>
-                        </li>
-                        <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a>
-                        </li>
-                    </ul>
-                </div>
+                        <div class="pull-left rating-stars">
+                            <ul style="display: inline-flex;">
+                                <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
+                                            aria-hidden="true"></span></a></li>
+                                <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
+                                            aria-hidden="true"></span></a></li>
+                                <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
+                                            aria-hidden="true"></span></a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-star star-stn"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                                <li><a href="#"><span class="glyphicon glyphicon-star star-stn"
+                                            aria-hidden="true"></span></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
-               
                 <div class="clearfix"></div>
             </div>
             <hr class="featurette-divider">
@@ -85,7 +103,8 @@
                         <li class="ad-2-crt simpleCart_shelfItem">
                             <a class="btn item_add" href="#" role="button" style="width: fit-content ;">Add To Cart</a>
                             <button type="button" name="add-to-cart" data-id="{{ $product -> id }}"
-                                class="add-to-cart"><a class="btn" role="button" style="">Buy Now</a></button>
+                                class="add-to-cart"><a class="btn" role="button" style="width: fit-content ;">Buy
+                                    Now</a></button>
 
                         </li>
                     </ul>
@@ -105,36 +124,36 @@
 
 <div class="specifications">
     <div class="container">
-            <div class="row">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Trống</th>
-                            <td>
-                                <p>Trống</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>CPU</th>
-                            <td>
-                                <p>Intel</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>RAM</th>
-                            <td>
-                                <p>4GB</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>VGA</th>
-                            <td>
-                                <p>4GB</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="row">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>CPU</th>
+                        <td>
+                            <p>{{ $product->cpu }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>RAM</th>
+                        <td>
+                            <p>{{ $product->ram }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>VGA</th>
+                        <td>
+                            <p>{{ $product->vga }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Màn hình</th>
+                        <td>
+                            <p>{{ $product->monitor }}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

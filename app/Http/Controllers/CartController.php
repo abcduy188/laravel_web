@@ -78,7 +78,7 @@ class CartController extends Controller
             }
         }
         session()->put('cart', $cart);
-        return redirect()->back()->with('message', 'Cập nhật số lượng thất bại!!');
+        return redirect()->back()->with('message', 'Cập nhật số lượng thành công!!');
     }
     public function delete_cart($id)
     {
@@ -94,14 +94,14 @@ class CartController extends Controller
             session()->put('cart', $cart);
             return redirect()->back();
         }
-        return redirect('/trang-chu');
+        return redirect('/trang-chu')->with("message","Xóa sản phẩm thành công");
     }
     public function delete_cart_all()
     {
         $cart = session()->get('cart');
         if ($cart) {
             session()->forget('cart');
-            return redirect('/trang-chu');
+            return redirect('/trang-chu')->with("message","Xóa giỏ hàng thành công");
         }
         return redirect('/trang-chu');
     }
@@ -148,7 +148,7 @@ class CartController extends Controller
             $cart = session()->get('cart');
             if ($cart) {
                 session()->forget('cart');
-                return redirect('/trang-chu');
+                return redirect('/trang-chu')->with("message","Đặt hàng thành công");
             }
             return redirect('/trang-chu');
         }

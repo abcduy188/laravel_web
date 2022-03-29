@@ -9,5 +9,5 @@
         </h3>
     </a>
     <p><a href="{{ url('gio-hang') }}" class="simpleCart_empty">Giỏ hàng</a></p>
-    <div class="clearfix"> </div>
+    <div class="clearfix"></div>
 </div>

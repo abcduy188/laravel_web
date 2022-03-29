@@ -138,9 +138,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item" href="{{ URL::to('/admin/all-user') }}">ALL USER</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>
             </li>

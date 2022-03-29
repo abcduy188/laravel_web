@@ -3,19 +3,16 @@
 
 
 <div>
-    <div class="header-end">
+    <div class="header-end" style="padding-top:90px;">
         <div class="container">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                   
                     @for ($i = 1; $i<= sizeof($slides); $i++)
                          <li data-target="#myCarousel" data-slide-to="{{ $i }}"></li>
-                    @endfor
-                   
+                    @endfor          
                 </ol>
-
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                    @php
@@ -33,10 +30,8 @@
                             <span class="color-bar"></span>
                         </div>
                     </div>
-                    @endforeach
-                   
+                    @endforeach    
                 </div>
-
                 <!-- Controls -->
                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left car-icn" aria-hidden="true"></span>
@@ -53,7 +48,7 @@
     <div class="feel-fall">
         
         <div class="container">
-            <h2>Sản phẩm mới</h2>
+            <h2>Sản Phẩm Mới</h2>
             @foreach ($productnew as  $item)
             <div class="pull-left fal-box">
                 <div class=" fall-left">
@@ -64,15 +59,12 @@
                 </div>
             </div>
             @endforeach
-           
-          
             <div class="clearfix"></div>
         </div>
     </div>
-    <div class="shop-grid">
-       
+    <div class="shop-grid">     
         <div class="container">
-            <h2>Sản phẩm nổi bật</h2>
+            <h2>Sản Phẩm Nổi Bật</h2>
             @foreach ($product as $item)
             <div class="col-md-4 grid-stn simpleCart_shelfItem">
                 <!-- normal -->
@@ -91,7 +83,6 @@
                                             $price = $item->Price;
                                             echo number_format($price, 0, '', ',');
                                                  ?>VND
-
                                         </span></a></p>
                             </div>
                             <div class="clearfix"></div>
@@ -104,19 +95,7 @@
                 </div>
             </div>
             @endforeach
-
-
             <div class="clearfix"></div>
-        </div>
-    </div>
-    <div class="sub-news">
-        <div class="container">
-            <form>
-                <h3>NewsLetter</h3>
-                <input type="text" class="sub-email" value="Email" onfocus="this.value = '';"
-                    onblur="if (this.value == '') {this.value = 'Email';}">
-                <a class="btn btn-default subs-btn" href="#" role="button">SUBSCRIBE</a>
-            </form>
         </div>
     </div>
 </div>

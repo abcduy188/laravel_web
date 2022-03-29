@@ -17,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 //frontend
 Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
+Route::get('/tim-kiem', 'HomeController@doSearch');
+
 Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 Route::get('/gio-hang', 'CartController@index');
 Route::get('/checkout', 'CartController@checkout')->middleware('user');
-
+Route::get('/thong-tin/{id}', 'UserController@info')->middleware('user');
+Route::post('/update-user/{id}', 'UserController@update')->middleware('user');
+Route::get('/detail-order/{id}', 'UserController@detail_order')->middleware('user');
+Route::get('/user/cancel/{id}', 'UserController@cancel_order')->middleware('user');
 
 
 Route::post('/add-cart-ajax', 'CartController@add_cart_ajax');

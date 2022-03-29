@@ -41,7 +41,7 @@ class CategoryProductController extends Controller
 
 
         $cate = new CategoryProduct();
-        $cate->CategoryName = bcrypt($data['category_product_name']);
+        $cate->CategoryName =$data['category_product_name'];
         $cate->SeoTitle = $data['category_product_seo'];
         $cate->Status = $data['category_product_status'];
         $cate->IsDelete = $isdelete;

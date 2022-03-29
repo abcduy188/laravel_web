@@ -11,7 +11,7 @@ class CategoryProduct extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'CategoryName', 'CreateBy', 'CreateDate', 'IsDelete', 'ModifiedBy', 'ModifiedDate', 'ParentID', 'SeoTitle', 'Status'
+        'CategoryName', 'CreateBy', 'CreateDate', 'IsDelete', 'ModifiedBy', 'ModifiedDate', 'ParentID', 'SeoTitle', 'Status','Address'
     ];
     protected $primarykey = 'id';
     protected $table = 'categoryproduct';

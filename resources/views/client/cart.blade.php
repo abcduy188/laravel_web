@@ -1,7 +1,15 @@
 @extends('layout')
 @section('content')
 <div class="check">
-    <div class="container">
+    
+    <div class="container" style="margin-top: 70px">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+            </ol>
+        </nav>
         @if (session()->get('cart'))
         @php
         $totalprice = 0;
@@ -11,7 +19,7 @@
         $totalpriceafter = $totalprice -($totalprice/10);
         @endphp
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Tiếp tục mua hàng</a>
+            <a class="continue" href="{{ url('/trang-chu') }}">Tiếp tục mua hàng</a>
             <div class="price-details">
                 <h3>Price Details</h3>
                 <span>Tổng tiền</span>
@@ -36,7 +44,7 @@
             @if (Auth::id())
             <a class="order" href="{{ url('/checkout') }}">Đặt hàng</a>
             @else
-            <a class="order" href="{{ url('/admin/login') }}">Bạn phải đăng nhậ trước</a>
+            <a class="order" href="{{ url('/admin/login') }}">Bạn phải đăng nhập trước</a>
             @endif
                                 
         </div>
@@ -101,7 +109,7 @@
 
         </div>
         @else
-        <div class="col-md-3 cart-total">
+        <div class="col-md-3 cart-total" style="padding-top:90px;">
 
 
             <span>Giỏ hàng trống</span>

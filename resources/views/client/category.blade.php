@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<div class="container">
+<div class="container" style="padding-top:100px;">
     <div class="col-md-12 grid-gallery">
         @foreach ($product as $item)
         <div class="col-md-4 grid-stn simpleCart_shelfItem">

@@ -12,34 +12,15 @@ body{
 	margin:0;
 	padding:0;
 }
-/*--fonts--*/
-@font-face{
-	font-family: 'Didact Gothic';
-	src:url(../fonts/Didact_Gothic/DidactGothic.ttf) format('truetype');
+html,
+body {
+    font-family: 'Roboto Condensed', sans-serif;
 }
-@font-face{
-	font-family: 'Pathway Gothic One';
-	src:url(../fonts/Pathway_Gothic_One/PathwayGothicOne-Regular.ttf) format('truetype');
-}
-.header-top{
-    position: relative;
-    padding: 0;
-    text-align: center;
-}
+
 .login-bars{
     position: absolute;
     top: 0%;
     right: 0%;
-}
-.logo a,.logo a:hover {
-    font-family: 'Pathway Gothic One';
-    background-color: #A5E126;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 10px 60px;
-    font-weight: bold;
-    font-size: 50px;
-    color: #fff;  
 }
 a.log-bar {
     background-color: #100B0B;
@@ -47,22 +28,110 @@ a.log-bar {
     border-radius: 0;
     border: 0;
     padding: 4px 12px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-weight: 400;
     font-size: 16px;
     text-transform: capitalize;
 }
-a.log-bar:hover,a.log-bar:focus{
-    background: #909090;
-    color: #fff;
-    transition: 0.5s all;
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
 }
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Didact Gothic';
-    font-weight: 400;
+
+#movieNavbar .navbar-nav {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+*/
+
+#movieNavbar .nav-item:hover::after {
+    width: 100%;
+}
+
+#movieNavbar .nav-item.active::after {
+    width: 100%;
+}
+#carouselMovie .carousel-caption {
+    text-align: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#carouselMovie .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid white;
+    /* C1: background:transparent */
+    background: transparent;
+    /* C2  */
+    /* background-clip:  border-box; */
+    opacity: 1;
+}
+
+#carouselMovie .carousel-indicators li.active {
+    /* C1: background:transparent */
+    background: white;
+}
+
+#carouselMovie .carousel-indicators {
+    justify-content: flex-start;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#carouselMovie .btn_trailer{
+    background: linear-gradient(to right, #fbbd61,#ec7532);
+    border-radius: 200px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    letter-spacing: 3px;
+    outline: none;
+}
+#carouselMovie .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #000000, transparent);
+}
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #5f6366;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
 .nav-menu{
     background: transparent;
     border-radius: 0;
@@ -170,9 +239,9 @@ a.log-bar:hover,a.log-bar:focus{
     width: 34%;
 }
 ul.nav-font>li>a{
-    font-size: 17px;
-    color: #100b0b !important;
-    font-family: 'Didact Gothic';
+    font-size: 15px;
+    color: #ffffff !important;
+    font-family: 'Roboto Condensed';
     font-weight: 400;
 }
 ul.nav-font>li>a:hover{
@@ -183,6 +252,29 @@ ul.nav-font>li>a:hover{
     color: #aaa !important;
     background-color: transparent ;
 }
+td {
+    width: 900px;
+    padding-left: 50px;
+}
+
+    td p {
+        padding-top: 5px
+    }
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr th {
+    width: 200px;
+    text-align: center;
+}
+
+th td {
+    width: 700px;
+}
+
 .men-img-wid {
     width: 100%;
 }
@@ -221,11 +313,11 @@ a.left.carousel-control,a.right.carousel-control {
     font-size: 75px;
     text-transform: capitalize;
     color: #100b0b;
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Roboto Condensed', cursive;
     text-shadow: none;
 }
 .car-re-posn h4{
-    font-family: 'Pathway Gothic One' !important;
+    font-family: 'Roboto Condensed' !important;
     font-weight: 400;
     font-size: 45px;
     color: #b8b8b8;
@@ -256,7 +348,7 @@ span.color-bar{
 }
 .fall-left h3,.feel-right h3{
     font-size: 50px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     color: #100b0b;
     text-transform: uppercase;
     margin-bottom: 15px;
@@ -267,6 +359,7 @@ span.color-bar{
     color: #C7C7C7;
     text-transform: lowercase;
 }
+
 .fl-img-wid {
     margin: 0 auto;
 }
@@ -337,17 +430,17 @@ span.fel-fal-bar2{
     z-index: 999;   
 }
 .styl-hdn h3 {
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     text-transform: uppercase;
     color: #272323;
     text-align: left;
-    font-size: 22px;
+    font-size: 16px;
     padding: 0;
     margin: 2px 0px 0px;
     font-weight: 400;
 }
 .styl-price p {
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
     font-size: 20px;
     position: relative;
     color: #FFFFFF;
@@ -392,14 +485,14 @@ span.fel-fal-bar2{
     padding: 3em 0;
 }
 .styl-price p a {
-    color: #100b0b;
+    color: red;
     text-decoration: none;
 }
 .grid-cart{
     font-size: 15px;
 }
 .quick-view a {
-     font-family: 'Pathway Gothic One';
+     font-family: 'Roboto Condensed';
     background-color: #A5E126;
     padding: 5px;
     font-weight: 400;
@@ -431,7 +524,7 @@ span.fel-fal-bar2{
 }
 .sub-news h3 {
     margin-bottom: 15px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     text-transform: uppercase;
     font-weight: bold;
     font-size: 38px;
@@ -441,7 +534,7 @@ li.ad-2-crt a:nth-child(2) {
     margin-top: 20px;
 }
 input.sub-email {
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     padding: 7px;
     width: 40%;
     border: 2px solid #100b0b;
@@ -449,7 +542,7 @@ input.sub-email {
     font-size: 18px;
 }
 a.subs-btn {
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     border: none;
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
@@ -479,7 +572,7 @@ a.subs-btn:hover{
     padding: 3em 0;
 }
 .re-ft-grd h3{
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
     font-weight: 700;
     text-transform: uppercase;
     font-size: 18px;
@@ -488,7 +581,7 @@ a.subs-btn:hover{
     text-shadow: none;
 }
 ul.categories li a,ul.shot-links li a{
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
     color: #100b0b;
     font-size: 16px;
     font-weight: 400;
@@ -542,7 +635,7 @@ a.ft-log, a.ft-log:hover {
     margin-top: 20px;
 }
 .copy-rt p {
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
     color: #100b0b;
     font-weight: 700;
     font-size: 17px;
@@ -584,7 +677,7 @@ ol.breadcrumb li a {
     text-transform: uppercase;
     font-weight: bold;
     color: #100B0B;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-size: 18px;
     text-shadow: none;
 }
@@ -593,7 +686,7 @@ ol.breadcrumb li a:hover{
     color: #fb4c29;
 }
 .breadcrumb>.active {
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     color: #fb4c29;
     font-weight: 600;
     font-size: 16px;
@@ -614,8 +707,8 @@ ol.breadcrumb li a:hover{
 .shoe-name h3,.shoe-name h4 {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 35px;
-    font-family: 'Pathway Gothic One';
+    font-size: 25px;
+    font-family: 'Roboto Condensed';
     color: #100B0B;
 }
 .shoe-name h4{
@@ -626,6 +719,7 @@ ol.breadcrumb li a:hover{
 }
 .rating-stars ul li{
     display: inline;
+    margin-left: 5px;
 }
 .rating-stars ul li a{
     color: #716969;
@@ -633,7 +727,7 @@ ol.breadcrumb li a:hover{
 }
 .shoe-name p {
     color: #aaa;
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
     font-weight: 700;
     font-size: 15px;
     font-style: italic;
@@ -658,7 +752,7 @@ li.qty {
 .form-control.siz-chrt,.form-control.qnty-chrt{
     background: #FFFFFF;
     color: #545454;
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
 }
 .form-control.siz-chrt:focus,.form-control.qnty-chrt:focus   {
     outline: 0;
@@ -674,7 +768,7 @@ option {
 .shocase-rt-bot h3 {
     font-size: 22px;
     text-transform: uppercase;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-weight: 100;
     color: #aaa;
     margin-bottom: 5px;
@@ -682,7 +776,7 @@ option {
 li.qty h4{
     font-size: 22px;
     text-transform: uppercase;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-weight: 100;
     margin-bottom: 5px;
     color: #aaa;
@@ -694,7 +788,7 @@ li.ad-2-crt a {
     width: 100%;
     background: #100b0b;
     color: #fff;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-size: 18px;
     border: none;
     border-radius: 0;
@@ -712,7 +806,7 @@ li.ad-2-crt a:hover{
 h3.you-might{
     text-transform: uppercase;
     font-weight: bold;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-size: 40px;
     margin-bottom: 20px;
     color: #100b0b;
@@ -721,7 +815,7 @@ h3.you-might{
     text-transform: uppercase;
     font-weight: bold;
     font-size: 27px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     color: #100B0B;
     margin:15px 0px; 
 }
@@ -733,14 +827,14 @@ h3.you-might{
     font-size: 15px;
     color: #aaa;
     text-transform: capitalize;
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
 }
 .specifications{
     padding: 3em 0;
     text-align: left;
 }
 .specifications h3 {
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     text-transform: uppercase;
     color: #100b0b;
     font-weight: 600;
@@ -758,7 +852,7 @@ div#profile p,div#home p,div#messages {
 }
 .tab-nike>li>a{
     color: #100b0b;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-weight: 600;
     font-size: 20px;
 }
@@ -788,7 +882,7 @@ a.continue,a.order {
     font-weight: 600;
     text-align: center;
     margin-bottom: 2em;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     text-transform: uppercase;
 }
 a.continue:hover, a.order:hover{
@@ -802,7 +896,7 @@ a.order{
     color: #100b0b;
     font-size: 25px;
     margin-bottom: 1em;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
 }
 .price-details span {
     width: 50%;
@@ -827,7 +921,7 @@ li.last_price span {
     color: #655858;
 }
 .cart-items h1 {
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     font-size: 35px;
     margin-bottom: 20px;
     font-weight: 400;
@@ -890,7 +984,7 @@ ul.qty li {
     text-transform: uppercase;
     color: #100B0B;
     font-size: 18px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
 }
 span.glyphicon.glyphicon-minus {
     color: #fff;
@@ -912,7 +1006,7 @@ ul.place li {
     cursor: pointer;
     display: inline-block;
     padding: 6px;
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
 }
 ul.place li.sort {
     float: left;
@@ -940,14 +1034,14 @@ input#amount {
     margin: 0;
     font-size: 28px;
     color: #100B0B;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
 }
 .log p {
     color: #aaa;
     margin: 22px 0;
     font-size: 15.5px;
     line-height: 1.8em;
-    font-family: 'Didact Gothic';
+    font-family: 'Roboto Condensed';
     font-weight: 100;
 }
 .log p a{
@@ -958,7 +1052,7 @@ input#amount {
     font-size: 16px;
     text-transform: capitalize;
     margin: 0 0 10px 0;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
 }
 .log form input[type="text"], .log form input[type="password"] {
     width: 70%;
@@ -1025,7 +1119,7 @@ input#amount {
     font-size: 35px;
     color: #100b0b;
     margin: 0 0 20px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
 }
 .reg p {
     color: #6B5E5E;
@@ -1105,7 +1199,7 @@ div textarea {
     outline: none;
 }
 .contact h3{
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     text-transform: uppercase;
     color: #100b0b;
     font-weight: 600;
@@ -1122,7 +1216,7 @@ div textarea {
     font-weight: 600;
     text-align: center;
     margin:18px 0px;
-    font-family: 'Pathway Gothic One';
+    font-family: 'Roboto Condensed';
     text-transform: uppercase;
     width: 15%;
     border-radius: 0;
@@ -1133,6 +1227,53 @@ div textarea {
     transition: 0.5s all;
     color: #fff;
     border: none;
+}
+.main-body {
+    padding: 15px;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+.h-100 {
+    height: 100%!important;
+}
+.shadow-none {
+    box-shadow: none!important;
 }
 /*--responsive-starts-here--*/
 @media screen and (max-width: 1024px){
@@ -1803,7 +1944,7 @@ div textarea {
         margin-left: 0;
     }
     .shoe-name h3, .shoe-name h4 {
-        font-size: 30px;
+        font-size: 25px;
     }
     .showcase {
         padding: 0;
@@ -1815,7 +1956,7 @@ div textarea {
         width: 70%;
     }
     .rating-stars {
-        width: 30%;
+        width: 20%;
         padding-top: 72px;
     }
     .tab-nike>li>a {

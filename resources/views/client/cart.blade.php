@@ -36,7 +36,7 @@
             @if (Auth::id())
             <a class="order" href="{{ url('/checkout') }}">Đặt hàng</a>
             @else
-            <a class="order" href="{{ url('/admin/login') }}">Bạn phải đăng nhậ trước</a>
+            <a class="order" href="{{ url('/admin/login') }}">Bạn phải đăng nhập trước</a>
             @endif
                                 
         </div>
@@ -101,7 +101,7 @@
 
         </div>
         @else
-        <div class="col-md-3 cart-total">
+        <div class="col-md-3 cart-total" style="padding-top:90px;">
 
 
             <span>Giỏ hàng trống</span>

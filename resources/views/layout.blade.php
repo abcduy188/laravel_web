@@ -18,10 +18,11 @@
     <!--fonts-->
     <!--bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <!--coustom css-->
     <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('public/frontend/css/index.css')}}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"
         type="text/css" />
     <!--shop-kart-js-->
@@ -52,13 +53,14 @@
 </head>
 
 <body>
-<header class=" header">
-       
-            <nav class="container navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="height: 90px;" >
+    <header class=" header">
+
+        <nav class="container navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="height: 90px;">
             <div class="login">
-            @if (Auth::id())
+                @if (Auth::id())
                 <div class="login-bars">
-                    <a class="btn btn-default log-bar" href="{{ url('/thong-tin') }}" role="button">Hello {{ Auth::user()->Name }}</a>
+                    <a class="btn btn-default log-bar" href="{{ url('/thong-tin/'.Auth::user()->id) }}"
+                        role="button">Hello {{ Auth::user()->Name }}</a>
                     <a class="btn btn-default log-bar" href="{{ url('/admin/logout') }}" role="button">Logout</a>
                     @include('partial.cartpartial');
                 </div>
@@ -71,28 +73,27 @@
                 @endif
             </div>
             <a class="navbar-brand" href="{{URL::to('/trang-chu')}}">
-                    <img src="{{asset('public/backend/img/logo.svg')}}" alt="why">
+                <img src="{{asset('public/backend/img/logo.svg')}}" alt="why">
             </a>
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#movieNavbar"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button> -->
-                <div class="collapse navbar-collapse" id="movieNavbar">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
+            <div class="collapse navbar-collapse" id="movieNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
                         @include('partial.category');
-                        </li>
-                    </ul>
-                    <form class="example" action="#" style="margin:auto;max-width:300px">
-                        <input type="text" placeholder="Tìm kiếm sản phẩm" name="search2">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-      
-            </nav>
-        
-</header>
+                    </li>
+                </ul>
+                <form class="example" action="#" style="margin:auto;max-width:300px">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm" name="search2">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
 
+        </nav>
+
+    </header>
     <!-- main -->
     @yield('content')
     <!-- endmain -->
@@ -100,7 +101,7 @@
     <div class="footer-grid">
         <div class="container">
             <div class="col-md-2 re-ft-grd">
-                <h3>Categories</h3>
+
                 <ul class="categories">
                     <li><a href="">ASUS</a></li>
                     <li><a href="#">DELL</a></li>
@@ -109,7 +110,7 @@
                 </ul>
             </div>
             <div class="col-md-2 re-ft-grd">
-                <h3>Short links</h3>
+
                 <ul class="shot-links">
                     <li><a href="#">Contact us</a></li>
                     <li><a href="#">Support</a></li>
@@ -120,7 +121,7 @@
                 </ul>
             </div>
             <div class="col-md-6 re-ft-grd">
-                <h3>Social</h3>
+
                 <ul class="social">
                     <li><a href="#" class="fb">facebook</a></li>
                     <li><a href="#" class="twt">twitter</a></li>
@@ -138,15 +139,30 @@
             <div class="clearfix"></div>
         </div>
     </div>
+    <?php
+    $message = session()->get('message');
+    if ($message)
+    {
+        echo "<input type='hidden' id='register_password' placeholder='Password' onshow='show()' value='".$message."'>";
+        
+        session()->put('message', null);
+    }
+?>
     <script src="http://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- BS4 JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+    <script>
+        function show(){
+           alert(document.getElementById('register_password').value)
+        }
+        show();
+    </script>
 </body>
 @yield('script')
 

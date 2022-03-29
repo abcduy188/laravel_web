@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         view()->composer('partial.category', function ($view) {
-            $category = CategoryProduct::all()->where('IsDelete', '=', 0);
+            $category = CategoryProduct::all()->where('IsDelete', '=', 0)->where('Status','=', 1);
             $data = array(
                 'category' => array('cate 1', 'cate 2', 'cate3')
             );

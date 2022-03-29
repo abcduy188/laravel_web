@@ -2,6 +2,13 @@
 @section('content')
 <div class="showcase-grid" style="padding-top:90px">
     <div class="container">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"> <a href="/shopphp/san-pham/{{ $product->category-> SeoTitle }}/{{$product->category -> id }}">{{ $product->category->CategoryName }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $product->Name }}</li>
+            </ol>
+        </nav>
         <div class="col-md-8 showcase">
             <div class="flexslider">
                 <ul class="slides">
@@ -205,21 +212,8 @@
                
                 success:function(data)
                 {
-                //     swal({
-                //         title:"abcduy says:",
-                //         text:"Đã thêm sản phẩm vào giỏ hàng",
-                //         showCancelButton: true,
-                //         cancelButtonText:"Xem tiếp",
-                //         confirmButtonClass:"btn-success",
-                //         confirmButtonText:"Đi đến giỏ hàng",
-                //         closeOnConfirm:false
-
-                //     },
-                //     function(){
-                //         window.location.href = "{{ url('/gio-hang') }}"
-                //     }
-                //    );
                 alert('Đã thêm sản phẩm vào giỏ hàng');
+                window.location.href = "{{ url('/gio-hang') }}"
                 }
 
            });

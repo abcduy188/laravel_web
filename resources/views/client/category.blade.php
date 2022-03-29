@@ -1,6 +1,12 @@
 @extends('layout')
 @section('content')
 <div class="container" style="padding-top:100px;">
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"> <a href="/shopphp/san-pham/{{ $cate-> SeoTitle }}/{{$cate-> id }}">{{ $cate->CategoryName }}</a></li>
+        </ol>
+    </nav>
     <div class="col-md-12 grid-gallery">
         @foreach ($product as $item)
         <div class="col-md-4 grid-stn simpleCart_shelfItem">

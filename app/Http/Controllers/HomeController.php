@@ -22,7 +22,8 @@ class HomeController extends Controller
     {
 
         $all = Product::where('category_id', $id)->paginate(2);
-        return view('client.category')->with('product', $all);
+        $cate = CategoryProduct::find($id);
+        return view('client.category')->with('product', $all)->with('cate',$cate);
     }
     public function product($seotitle, $id)
     {

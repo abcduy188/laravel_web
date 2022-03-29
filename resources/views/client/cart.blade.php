@@ -1,7 +1,15 @@
 @extends('layout')
 @section('content')
 <div class="check">
-    <div class="container">
+    
+    <div class="container" style="margin-top: 70px">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+            </ol>
+        </nav>
         @if (session()->get('cart'))
         @php
         $totalprice = 0;

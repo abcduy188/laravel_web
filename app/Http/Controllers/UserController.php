@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -75,5 +77,41 @@ class UserController extends Controller
 
         session()->put('message', 'cập nhật sản phẩm thành công');
         return Redirect::to('/admin/all-user');
+    }
+
+    //client
+    public function info($id)
+    {
+        $user = User::find($id);
+        $order = Order::where('customer_id',$id)->get();
+        
+        return view('client.user')->with('user', $user)->with('order',$order);
+    }
+    public function update(Request $request,$id)
+    {
+        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $user = User::find($id);
+        $data = $request->all();
+        $user->Name = $data['name'];
+        $user->Phone = $data['phone'];
+        $user->Address = $data['address'];
+        $user->ModifiedDate = $date;
+        $user->ModifiedBy = Auth::user()->Name;
+        $user->save();
+        return redirect()->back()->with("message","Cập nhật user thành công");
+    }
+    public function detail_order($id)
+    {
+    
+        $order_details = OrderDetails::where('order_id', $id)->get();
+        $order = Order::where('order_id', $id)->first();
+        $customer_id = $order->customer_id;
+        $customer = User::find($customer_id);
+        return view('client.detail_order')->with('order_details', $order_details)->with('customer', $customer)->with('order', $order);
+    }
+    public function cancel_order($id)
+    {
+        Order::where('order_id', $id)->update(['order_status'=> 0]);
+        return redirect()->back()->with('message', 'Đã xử lí đơn hàng');
     }
 }

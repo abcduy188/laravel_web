@@ -10,6 +10,7 @@ use App\User;
 use App\Roles;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 session_start();
@@ -113,5 +114,22 @@ class UserController extends Controller
     {
         Order::where('order_id', $id)->update(['order_status'=> 0]);
         return redirect()->back()->with('message', 'Đã xử lí đơn hàng');
+    }
+    public function changePass()
+    {
+        return view('client.changepassword');
+    }
+    public function dochangePass(Request $request)
+    {
+        $new= Hash::make($request['new']) ;
+        $user = User::find(Auth::user()->id);
+        if(Hash::check($request['old'],$user->password))
+        {
+           $user->password = $new;
+           $user->save();
+           return redirect()->back()->with('message','Đổi mật khẩu thành công');
+        }
+        
+        return redirect()->back()->with('message','Mật khẩu cũ không đúng');
     }
 }

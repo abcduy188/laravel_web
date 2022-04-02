@@ -24,12 +24,15 @@ Route::get('/send-mail', 'HomeController@sendmail');
 Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 Route::get('/gio-hang', 'CartController@index');
-Route::get('/checkout', 'CartController@checkout')->middleware('user');
-Route::get('/thong-tin/{id}', 'UserController@info')->middleware('user');
-Route::post('/update-user/{id}', 'UserController@update')->middleware('user');
-Route::get('/detail-order/{id}', 'UserController@detail_order')->middleware('user');
-Route::get('/user/cancel/{id}', 'UserController@cancel_order')->middleware('user');
-
+Route::group(['middleware' => 'user'], function () {
+  Route::get('/checkout', 'CartController@checkout');
+  Route::get('/thong-tin/{id}', 'UserController@info');
+  Route::post('/update-user/{id}', 'UserController@update');
+  Route::get('/detail-order/{id}', 'UserController@detail_order');
+  Route::get('/user/cancel/{id}', 'UserController@cancel_order');
+  Route::get('/doi-mat-khau', 'UserController@changePass');
+  Route::post('/doChangePass', 'UserController@dochangePass');
+});
 
 Route::post('/add-cart-ajax', 'CartController@add_cart_ajax');
 Route::post('/update-cart', 'CartController@update_cart');
@@ -50,7 +53,7 @@ Route::group(['middleware' => 'auth.roles'], function () {
   Route::get('/admin/edit-category-product/{categoryproduct_id}', 'CategoryProductController@edit_category_product');
   Route::get('/admin/deleted-category-product', 'CategoryProductController@deleted_category_product');
   Route::get('/admin/delete-category-product/{categoryproduct_id}', 'CategoryProductController@delete_category_product');
- 
+
   // {categoryproduct_id} khai bao tuy y
   Route::get('/admin/active-category-product/{categoryproduct_id}', 'CategoryProductController@active_category_product');
   Route::get('/admin/unactive-category-product/{categoryproduct_id}', 'CategoryProductController@unactive_category_product');
@@ -90,9 +93,9 @@ Route::group(['middleware' => 'auth.roles'], function () {
   Route::get('/admin/detail-order/{order_code}', 'OrderController@details');
   Route::get('/admin/accept/{id}', 'OrderController@accept_order');
   Route::get('/admin/cancel/{id}', 'OrderController@cancel_order');
- 
- 
- //user
+
+
+  //user
   Route::get('/admin/all-user', 'UserController@index');
   Route::group(['middleware' => 'admin.role'], function () {
     Route::get('/admin/add-user', 'UserController@add_product');

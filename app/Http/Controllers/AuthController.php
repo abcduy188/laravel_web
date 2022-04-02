@@ -49,12 +49,15 @@ class AuthController extends Controller
 
     public function doLogin(Request $request)
     {
+        
         $credentials = [
             'email' => $request['Email'],
             'password' => $request['Password'],
         ];
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
+            if(Auth::user()->hasAnyRoles(['ADMIN','mod'])) return redirect('/dashboard');
+            return redirect('/trang-chu');
+           
         } else {
             return redirect('/admin/login')->with('message', 'Tài khoản hoặc mật khẩu không đúng');
         }
@@ -76,7 +79,7 @@ class AuthController extends Controller
                 $user->save();
                 session()->put('user', $user);
                 $to_name = "abcduy";
-                $to_email = "trkhanhsduy@gmail.com";
+                $to_email = $user->email;
 
                 $data = array(
                     "name" => "Test name",
@@ -98,7 +101,7 @@ class AuthController extends Controller
                 $user->code = null;
                 $user->save();
                 $to_name = "abcduy";
-                $to_email = "trkhanhsduy@gmail.com";
+                $to_email = $user->mail;
 
                 $data = array(
                     "name" => "Mật khẩu mới",

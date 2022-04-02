@@ -21,13 +21,10 @@
         <div class="col-md-3 cart-total">
             <a class="continue" href="{{ url('/trang-chu') }}">Tiếp tục mua hàng</a>
             <div class="price-details">
-                <h3>Price Details</h3>
+            
                 <span>Tổng tiền</span>
                 <span class="total1">{{ number_format($totalprice) }}VND</span>
-                <span>Discount</span>
-                <span class="total1">10%(Festival Offer)</span>
-                <span>Delivery Charges</span>
-                <span class="total1">150.00</span>
+               
                 <div class="clearfix"></div>
             </div>
             <hr class="featurette-divider">
@@ -36,7 +33,7 @@
                     <h4>TOTAL</h4>
                 </li>
 
-                <li class="last_price"><span>{{ number_format($totalpriceafter) }}VND</span></li>
+                <li class="last_price"><span>{{ number_format($totalprice) }}VND</span></li>
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"></div>
@@ -85,11 +82,7 @@
                                             ?> VND</p>
                                 </li>
                             </ul>
-                            <div class="delivery">
-                                <p>Service Charges : Rs.190.00</p>
-                                <span>Delivered in 2-3 bussiness days</span>
-                                <div class="clearfix"></div>
-                            </div>
+                           
                         </div>
                         <div class="clearfix"></div>
 
@@ -98,10 +91,10 @@
                 @endforeach
                 <div class="cart-header">
                     <div class="cart-sec simpleCart_shelfItem">
-                        <input type="submit" id="btn_update_qty" class="btn btn-default btn-sm"
-                            value="Cập nhật giỏ hàng" name="update_qty" style="background: black; color: white;"
+                        <input  type="submit" id="btn_update_qty" class="btn btn-default btn-sm"
+                            value="Cập nhật giỏ hàng" name="update_qty" style="width: 50%;background: black; color: white;"
                             onmouseover="this.style.color='red'">
-                        <a class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
+                        <a style="width: 40%" class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
                     </div>
                 </div>
             </form>

@@ -72,9 +72,7 @@
                 </div>
                 @endif
             </div>
-            <a class="navbar-brand" href="{{URL::to('/trang-chu')}}">
-                <img src="{{asset('public/backend/img/logo.svg')}}" alt="why">
-            </a>
+           
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#movieNavbar"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -157,12 +155,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
-    <script>
-        function show(){
-           alert(document.getElementById('register_password').value)
-        }
-        show();
-    </script>
+   
 </body>
 @yield('script')
 

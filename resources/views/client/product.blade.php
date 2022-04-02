@@ -101,10 +101,9 @@
                     </div>
                     <ul>
                         <li class="ad-2-crt simpleCart_shelfItem">
-                            <a class="btn item_add" href="#" role="button" style="width: fit-content ;">Add To Cart</a>
+                           
                             <button type="button" name="add-to-cart" data-id="{{ $product -> id }}"
-                                class="add-to-cart"><a class="btn" role="button" style="width: fit-content ;">Buy
-                                    Now</a></button>
+                                class="add-to-cart"><a class="btn" role="button" style="width: fit-content ;">Thêm vào giỏ hàng</a></button>
 
                         </li>
                     </ul>
@@ -112,7 +111,7 @@
             </form>
 
             <div class="showcase-last">
-                <h3>product details</h3>
+                <h3>Chi tiết sản phẩm</h3>
                 <ul>
                     <li>{{ $product-> Description }}</li>
                 </ul>

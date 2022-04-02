@@ -6,6 +6,8 @@ use App\CategoryProduct;
 use App\Product;
 use App\Slides;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use PHPUnit\Framework\Constraint\Count;
 
 class HomeController extends Controller
@@ -37,6 +39,21 @@ class HomeController extends Controller
         $name = $request->query('search');
         $product = Product::where('Name','like','%'.$name.'%')->get();
         return view('client.search')->with('product', $product);
+    }
+    public function sendmail()
+    {
+        $to_name = "abcduy";
+        $to_email = "trkhanhsduy@gmail.com";
+
+        $data = array("name"=>"Test name","body"=>"test body");
+
+        Mail::send('admin.user.resetpass',$data,function($message) use ($to_name,$to_email){
+            $message->to($to_email)->subject('Subject');
+            $message->from($to_email,$to_name);
+        });
+
+
+        return redirect()->action('HomeController@index')->with("message","DDax redirect");
     }
    
 }

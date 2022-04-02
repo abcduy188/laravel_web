@@ -19,6 +19,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/trang-chu', 'HomeController@index');
 Route::get('/tim-kiem', 'HomeController@doSearch');
 
+Route::get('/send-mail', 'HomeController@sendmail');
+
 Route::get('/san-pham/{seotitle}/{id}', 'HomeController@category');
 Route::get('/chi-tiet/{seotitle}/{id}', 'HomeController@product');
 Route::get('/gio-hang', 'CartController@index');
@@ -111,6 +113,8 @@ Route::post('/doregister', 'AuthController@doRegister');
 Route::get('/admin/login', 'AuthController@login');
 Route::post('/admin/dologin', 'AuthController@doLogin');
 Route::get('/admin/logout', 'AuthController@logout');
+Route::get('/forget-pass', 'AuthController@forgotPassword');
+Route::post('/sendcode', 'AuthController@sendcode');
 
 
 

@@ -18,6 +18,13 @@ return [
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
+    'stream'=>[
+        'ssl'=>[
+            'allow_self_signed'=>true,
+            'verify_peer'=>false,
+            'verify_peer_name'=>false,
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -56,8 +63,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'trankhanhduydzzz@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'ABCDUY'),
     ],
 
     /*
@@ -71,7 +78,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

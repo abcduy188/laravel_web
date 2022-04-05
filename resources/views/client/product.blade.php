@@ -27,7 +27,7 @@
         <div class="col-md-4 showcase">
             <div class="showcase-rt-top">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="pull-left shoe-name">
                             <h3 style="color: crimson">{{ $product->Name }}</h3>
                             <p></p>
@@ -45,28 +45,6 @@
                                 }
                                 
                                 ?>
-
-
-
-
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="pull-left rating-stars">
-                            <ul style="display: inline-flex;">
-                                <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
-                                            aria-hidden="true"></span></a></li>
-                                <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
-                                            aria-hidden="true"></span></a></li>
-                                <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn"
-                                            aria-hidden="true"></span></a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-star star-stn"
-                                            aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="glyphicon glyphicon-star star-stn"
-                                            aria-hidden="true"></span></a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -101,10 +79,8 @@
                     </div>
                     <ul>
                         <li class="ad-2-crt simpleCart_shelfItem">
-                            <a class="btn item_add" href="#" role="button" style="width: fit-content ;">Add To Cart</a>
                             <button type="button" name="add-to-cart" data-id="{{ $product -> id }}"
-                                class="add-to-cart"><a class="btn" role="button" style="width: fit-content ;">Buy
-                                    Now</a></button>
+                                class="add-to-cart"><a class="btn" role="button" style="width: fit-content ;">Thêm vào giỏ hàng</a></button>
 
                         </li>
                     </ul>
@@ -112,48 +88,41 @@
             </form>
 
             <div class="showcase-last">
-                <h3>product details</h3>
+                <h3>Chi tiết sản phẩm</h3>
                 <ul>
                     <li>{{ $product-> Description }}</li>
                 </ul>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>CPU</th>
+                            <td>
+                                <p>{{ $product->cpu }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>RAM</th>
+                            <td>
+                                <p>{{ $product->ram }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>VGA</th>
+                            <td>
+                                <p>{{ $product->vga }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Màn hình</th>
+                            <td>
+                                <p>{{ $product->monitor }}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="clearfix"></div>
-    </div>
-</div>
-
-<div class="specifications">
-    <div class="container">
-        <div class="row">
-            <table>
-                <tbody>
-                    <tr>
-                        <th>CPU</th>
-                        <td>
-                            <p>{{ $product->cpu }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>RAM</th>
-                        <td>
-                            <p>{{ $product->ram }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>VGA</th>
-                        <td>
-                            <p>{{ $product->vga }}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Màn hình</th>
-                        <td>
-                            <p>{{ $product->monitor }}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 

@@ -15,15 +15,10 @@ use Illuminate\Support\Facades\Redirect;
 session_start();
 class UserController extends Controller
 {
-    public function all_product()
-    {
-        $all = DB::table('user')->get();
-        $manage_product = view('admin.product.all_product')->with('all_product', $all);
-        return view('admin_layout')->with('admin.all_product', $manage_product);
-    }
+    
     public function index()
     {
-        $admin = User::with('roles')->orderBy('id', 'DESC')->get();
+        $admin = User::with('roles')->where('IsDelete',0)->orderBy('id', 'DESC')->get();
         return view('admin.user.all_user')->with(compact('admin'));
     }
     public function assign_roles(Request $request)
@@ -49,8 +44,9 @@ class UserController extends Controller
         $user = User::find($id);
         if($user)
         {
-            $user->roles()->detach();
-            $user->delete();
+            //$user->roles()->detach();
+            $user->IsDelete = 1;
+            $user->save();
             return redirect()->back()->with('message','Xóa User Thành công');
         }
         

@@ -1,13 +1,9 @@
 
 
-<div class="cart box_1">
+<div class="info2">
     <a href="{{ url('gio-hang') }}">
-        <h3>
-            <div class="total">
-                {{ number_format($total) }}VND ({{ $count }})
-            </div>
-        </h3>
+        <span> ({{ $count }})</span>
     </a>
-    <p><a href="{{ url('gio-hang') }}" class="simpleCart_empty">Giỏ hàng</a></p>
+   <a href="{{ url('gio-hang') }}" class="simpleCart_empty"> <img src="{{ asset('public/frontend/images/cart.png') }}" alt=""></a>
     <div class="clearfix"></div>
 </div>

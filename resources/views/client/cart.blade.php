@@ -18,16 +18,12 @@
         }
         $totalpriceafter = $totalprice -($totalprice/10);
         @endphp
-        <div class="col-md-3 cart-total">
-            <a class="continue" href="{{ url('/trang-chu') }}">Tiếp tục mua hàng</a>
-            <div class="price-details">
-                <h3>Price Details</h3>
+        <div class="col-md-3 cart-total" style="border: 1px solid crimson;padding-inline: 5px">
+            <a style="margin-top: 5px" class="continue" href="{{ url('/trang-chu') }}">Tiếp tục mua hàng</a>
+            <div class="price-details" >
+                <h3>Chi tiết giá tiền</h3>
                 <span>Tổng tiền</span>
                 <span class="total1">{{ number_format($totalprice) }}VND</span>
-                <span>Discount</span>
-                <span class="total1">10%(Festival Offer)</span>
-                <span>Delivery Charges</span>
-                <span class="total1">150.00</span>
                 <div class="clearfix"></div>
             </div>
             <hr class="featurette-divider">
@@ -63,7 +59,7 @@
                     <div class="close1" data-id="{{ $item['session_id'] }}"><span class="glyphicon glyphicon-remove"
                             aria-hidden="true"><a href="{{ url('/del-cart-ajax/' .$item['session_id']) }}"></a>
                         </span></div>
-                    <div class="cart-sec simpleCart_shelfItem">
+                    <div class="cart-sec simpleCart_shelfItem" style="border: 1px solid crimson">
                         <div class="cart-item cyc">
                             <img src="{{ $item['product_image'] }}" class="img-responsive" alt="" />
                         </div>
@@ -85,11 +81,6 @@
                                             ?> VND</p>
                                 </li>
                             </ul>
-                            <div class="delivery">
-                                <p>Service Charges : Rs.190.00</p>
-                                <span>Delivered in 2-3 bussiness days</span>
-                                <div class="clearfix"></div>
-                            </div>
                         </div>
                         <div class="clearfix"></div>
 
@@ -99,9 +90,9 @@
                 <div class="cart-header">
                     <div class="cart-sec simpleCart_shelfItem">
                         <input type="submit" id="btn_update_qty" class="btn btn-default btn-sm"
-                            value="Cập nhật giỏ hàng" name="update_qty" style="background: black; color: white;"
+                            value="Cập nhật giỏ hàng" name="update_qty" style="background: black; color: white; width: 300px;height: 50px;"
                             onmouseover="this.style.color='red'">
-                        <a class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
+                        <a style="width: 300px;" class="order" href="{{ url('/delete-all-cart') }}">Xóa tất cả</a>
                     </div>
                 </div>
             </form>

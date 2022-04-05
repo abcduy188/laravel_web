@@ -94,6 +94,27 @@
     <header class=" header">
 
         <nav class="container navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="height: 70px;">
+            <div class="login">
+                @if (Auth::id())
+                <div class="login-bars">
+                    <a class="btn btn-default log-bar" href="{{ url('/thong-tin/'.Auth::user()->id) }}"
+                        role="button">Hello {{ Auth::user()->Name }}</a>
+                    <a class="btn btn-default log-bar" href="{{ url('/admin/logout') }}" role="button">Logout</a>
+                    @include('partial.cartpartial');
+                </div>
+                @else
+                <div class="login-bars">
+                    <a class="btn btn-default log-bar" href="{{ url('/register') }}" role="button">Sign up</a>
+                    <a class="btn btn-default log-bar" href="{{ url('/admin/login') }}" role="button">Login</a>
+                    @include('partial.cartpartial')
+                </div>
+                @endif
+            </div>
+           
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#movieNavbar"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button> -->
 
             <div class="collapse navbar-collapse" id="movieNavbar">
                 <ul class="navbar-nav ml-auto">
@@ -197,12 +218,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
-    <script>
-        function show(){
-           alert(document.getElementById('register_password').value)
-        }
-        show();
-    </script>
+   
 </body>
 @yield('script')
 

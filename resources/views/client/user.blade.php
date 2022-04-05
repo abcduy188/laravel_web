@@ -1,5 +1,16 @@
 @extends('layout')
 @section('content')
+<style>
+    .abc {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        background-color: #3CBC8D;
+        color: white;
+    }
+</style>
 <div class="container">
     <div class="main-body">
         <!-- Breadcrumb -->
@@ -10,6 +21,14 @@
                 <li class="breadcrumb-item active" aria-current="page">User Profile</li>
             </ol>
         </nav>
+        <?php
+        $message = session()->get('message');
+        if ($message)
+        {
+            echo  '<div class="alert alert-danger">'.$message.'</div>';
+            session()->put('message', null);
+        }
+             ?>
         <!-- /Breadcrumb -->
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
@@ -20,8 +39,8 @@
                                 alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <h4>{{$user -> Name}}</h4>
-                                <p class="text-secondary mb-1">Front-End Dev</p>
-                                <p class="text-muted font-size-sm">Ho Chi Minh City</p>
+                               
+                                <p class="text-muted font-size-sm">{{ $user->Address }}</p>
                             </div>
                         </div>
                     </div>
@@ -37,47 +56,49 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                  {{ $user->email }}
+                                    {{ $user->email }}
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                                    <h6 class="mb-0">Họ tên</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="name" value="{{ $user->Name }}">
+                                    <input class="abc" type="text" name="name" value="{{ $user->Name }}">
                                 </div>
                             </div>
-                            
-                           
+
+
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                    <h6 class="mb-0">Số điện thoại</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="phone" value="{{ $user->Phone }}">
+                                    <input class="abc" type="text" name="phone" value="{{ $user->Phone }}">
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
+                                    <h6 class="mb-0">Địa chỉ</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="address" value="{{ $user->Address }}">
+                                    <input class="abc" type="text" name="address" value="{{ $user->Address }}">
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                <input type="submit" class="btn btn-default" value="Edit">
+                                    <input type="submit" style="width: 100%" class="btn btn-default" value="Cập nhật">
                                 </div>
                             </div>
                         </form>
-                        
+
+
                     </div>
+                    <a href="{{URL::to ('/doi-mat-khau') }}" class="btn btn-default">Đổi mật khẩu</a>
                 </div>
             </div>
 
@@ -97,10 +118,10 @@
 
                             <td>{{ $item -> order_code }}</td>
                             <td>
-                                
+
                                 @if ($item -> order_status == 1)
                                 <span style="color: green">Đơn hàng mới</span>
-                                @else 
+                                @else
                                 <span style="color: crimson">Đã xử lí</span>
                                 @endif
 
@@ -119,7 +140,7 @@
 
                     </tbody>
                 </table>
-              
+
             </div>
         </div>
     </div>

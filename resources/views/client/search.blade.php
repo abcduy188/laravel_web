@@ -3,7 +3,7 @@
 <div class="container" style="padding-top:100px;">
     <nav aria-label="breadcrumb" class="main-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
             
         </ol>
     </nav>

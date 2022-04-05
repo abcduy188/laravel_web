@@ -150,7 +150,7 @@ class CartController extends Controller
                 session()->forget('cart');
                 return redirect('/trang-chu')->with("message","Đặt hàng thành công");
             }
-            return redirect('/trang-chu');
+            return redirect('/trang-chu')->with("message","Đặt hàng thành công");;
         }
 
        

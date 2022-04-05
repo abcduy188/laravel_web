@@ -50,12 +50,50 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <!-- //FlexSlider-->
+    <style>
+        .login-bars {
+            min-width: 70px;
+            width: 350px;
+            height: 70px;
+        }
+
+        .login-bars .info {
+            width: 70%;
+            float: left;
+            padding-top: 15px;
+        }
+
+        .login-bars .info2 {
+            padding-left: 2px;
+            width: 30%;
+            height: 70px;
+            float: left;
+            padding-left: 20px;
+           
+        }
+
+        .login-bars .info2 span {
+                background: crimson;
+                border-radius: 20px;
+                color: white;
+                position: absolute;
+                margin-left: 25px;
+                margin-bottom:20px;
+                padding-top: 10px;
+                padding: 5px 7px;
+                font-size: 10px;
+        }
+        .login-bars .info2 img {
+                padding: 15px 7px;
+                font-size: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <header class=" header">
 
-        <nav class="container navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="height: 90px;">
+        <nav class="container navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="height: 70px;">
             <div class="login">
                 @if (Auth::id())
                 <div class="login-bars">
@@ -77,16 +115,41 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button> -->
+
             <div class="collapse navbar-collapse" id="movieNavbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         @include('partial.category');
                     </li>
                 </ul>
-                <form class="example" action="{{ URL::to('/tim-kiem') }}" style="margin:auto;max-width:300px" method="GET">
+                <form class="example" action="{{ URL::to('/tim-kiem') }}" style="margin:auto;max-width:300px"
+                    method="GET">
                     <input type="text" placeholder="Tìm kiếm sản phẩm" name="search">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
+            </div>
+            <div class="login">
+                @if (Auth::id())
+                <div class="login-bars">
+                    @include('partial.cartpartial')
+                    <div class="info">
+                        <a class="btn btn-default log-bar" href="{{ url('/thong-tin/'.Auth::user()->id) }}"
+                            role="button">Hello {{ Auth::user()->Name }}</a>
+                        <a class="btn btn-default log-bar" href="{{ url('/admin/logout') }}" role="button">Logout</a>
+                    </div>
+
+                </div>
+                @else
+                <div class="login-bars">
+                    @include('partial.cartpartial')
+                    <div class="info">
+                        <a class="btn btn-default log-bar" href="{{ url('/register') }}" role="button">Sign up</a>
+                        <a class="btn btn-default log-bar" href="{{ url('/admin/login') }}" role="button">Login</a>
+                    </div>
+
+                </div>
+                @endif
+
             </div>
 
         </nav>

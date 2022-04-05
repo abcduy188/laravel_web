@@ -14,7 +14,7 @@
                     @endfor          
                 </ol>
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner" role="listbox" style="height: 350px">
                    @php
                        $a = 0;
                    @endphp
